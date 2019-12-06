@@ -1,5 +1,3 @@
-//haha
-
 package oak.shef.ac.uk.assignment;
 
 import android.app.Application;
