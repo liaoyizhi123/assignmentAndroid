@@ -1,6 +1,6 @@
 
 
-package oak.shef.ac.uk.livedata.database;
+package oak.shef.ac.uk.assignment.database;
 
 import android.arch.lifecycle.LiveData;
 import android.arch.persistence.room.Dao;

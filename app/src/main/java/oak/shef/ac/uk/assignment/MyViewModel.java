@@ -1,13 +1,13 @@
 
 
-package oak.shef.ac.uk.livedata;
+package oak.shef.ac.uk.assignment;
 
 import android.app.Application;
 import android.arch.lifecycle.AndroidViewModel;
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
 
-import oak.shef.ac.uk.livedata.database.NumberData;
+import oak.shef.ac.uk.assignment.database.NumberData;
 
 public class MyViewModel extends AndroidViewModel {
     private final MyRepository mRepository;

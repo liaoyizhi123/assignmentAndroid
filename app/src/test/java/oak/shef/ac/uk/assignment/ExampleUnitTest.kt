@@ -1,4 +1,4 @@
-package oak.shef.ac.uk.livedata
+package oak.shef.ac.uk.assignment
 
 import org.junit.Assert.assertEquals
 import org.junit.Test

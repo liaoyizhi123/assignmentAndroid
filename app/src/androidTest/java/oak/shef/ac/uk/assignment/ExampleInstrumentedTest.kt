@@ -1,4 +1,4 @@
-package oak.shef.ac.uk.livedata
+package oak.shef.ac.uk.assignment
 
 import android.support.test.InstrumentationRegistry
 import android.support.test.runner.AndroidJUnit4

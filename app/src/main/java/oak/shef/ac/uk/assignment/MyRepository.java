@@ -1,6 +1,6 @@
 
 
-package oak.shef.ac.uk.livedata;
+package oak.shef.ac.uk.assignment;
 
 import android.app.Application;
 import android.arch.lifecycle.LiveData;
@@ -10,9 +10,9 @@ import android.util.Log;
 
 import java.util.Random;
 
-import oak.shef.ac.uk.livedata.database.MyDAO;
-import oak.shef.ac.uk.livedata.database.MyRoomDatabase;
-import oak.shef.ac.uk.livedata.database.NumberData;
+import oak.shef.ac.uk.assignment.database.MyDAO;
+import oak.shef.ac.uk.assignment.database.MyRoomDatabase;
+import oak.shef.ac.uk.assignment.database.NumberData;
 
 class MyRepository extends ViewModel {
     private final MyDAO mDBDao;

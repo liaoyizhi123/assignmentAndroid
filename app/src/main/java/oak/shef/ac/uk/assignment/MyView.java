@@ -1,6 +1,6 @@
 
 
-package oak.shef.ac.uk.livedata;
+package oak.shef.ac.uk.assignment;
 
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.Observer;
@@ -12,7 +12,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import oak.shef.ac.uk.livedata.database.NumberData;
+import oak.shef.ac.uk.assignment.database.NumberData;
 
 public class MyView extends AppCompatActivity {
     LiveData<NumberData> stringToDisplay;
