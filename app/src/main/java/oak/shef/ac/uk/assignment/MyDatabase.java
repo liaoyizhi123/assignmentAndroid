@@ -1,25 +1,30 @@
-
-
-package oak.shef.ac.uk.assignment.database;
+package oak.shef.ac.uk.assignment;
 
 import android.arch.persistence.db.SupportSQLiteDatabase;
+import android.arch.persistence.room.Database;
 import android.arch.persistence.room.RoomDatabase;
 import android.content.Context;
 import android.support.annotation.NonNull;
 
-@android.arch.persistence.room.Database(entities = {NumberData.class}, version = 1, exportSchema = false)
-public abstract class MyRoomDatabase extends RoomDatabase {
-    public abstract MyDAO myDao();
+import oak.shef.ac.uk.assignment.dao.ImageDao;
+import oak.shef.ac.uk.assignment.dao.PathDao;
+import oak.shef.ac.uk.assignment.entities.Image;
+import oak.shef.ac.uk.assignment.entities.Path;
 
-    // marking the instance as volatile to ensure atomic access to the variable
-    private static volatile MyRoomDatabase INSTANCE;
+@Database(entities = {Image.class, Path.class},version = 4,exportSchema = false)
+public abstract class MyDatabase extends RoomDatabase {
 
-    public static MyRoomDatabase getDatabase(final Context context) {
+    public abstract ImageDao imageDao();
+    public abstract PathDao pathDao();
+
+    private static volatile MyDatabase INSTANCE;
+
+    public static MyDatabase getDatabase(final Context context) {
         if (INSTANCE == null) {
-            synchronized (MyRoomDatabase.class) {
+            synchronized (MyDatabase.class) {
                 if (INSTANCE == null) {
                     INSTANCE = android.arch.persistence.room.Room.databaseBuilder(context.getApplicationContext(),
-                            MyRoomDatabase.class, "number_database")
+                            MyDatabase.class, "MyDatabase")
                             // Wipes and rebuilds instead of migrating if no Migration object.
                             // Migration is not part of this codelab.
                             .fallbackToDestructiveMigration()
@@ -42,6 +47,7 @@ public abstract class MyRoomDatabase extends RoomDatabase {
         @Override
         public void onOpen(@NonNull SupportSQLiteDatabase db) {
             super.onOpen(db);
+
             // do any init operation about any initialisation here
         }
     };
