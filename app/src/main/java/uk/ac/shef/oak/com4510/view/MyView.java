@@ -111,7 +111,21 @@ public class MyView extends AppCompatActivity {
                 .setCopyPickedImagesToPublicGalleryAppFolder(false)
                 .setAllowMultiplePickInGallery(true);
     }
+    public void dateAscending(View view){
+        Intent intent = new Intent();
+        intent.setClass(MyView.this,DateAscending.class);
+//        String account =getIntent().getStringExtra("username");
+////        intent.putExtra("username",account);
+        startActivity(intent);
+    }
 
+    public void pathBrowsing(View view){
+        Intent intent = new Intent();
+        intent.setClass(MyView.this,GridAfterPath.class);
+//        String account =getIntent().getStringExtra("username");
+////        intent.putExtra("username",account);
+        startActivity(intent);
+    }
 
 }
 

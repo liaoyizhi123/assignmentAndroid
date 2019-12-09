@@ -81,6 +81,7 @@
             android:inputType="textCapWords"
             android:textSize="30dp"
             android:textColor="#072c0d"
+            android:onClick="dateAscending"
             />
             <!--android:onClick="dateAscending"-->
 
@@ -94,7 +95,7 @@
             android:layout_alignParentRight="true"
             android:layout_alignParentBottom="true"
             android:text="Path"
-
+            android:onClick="pathBrowsing"
             android:inputType="textCapWords"
             android:textSize="30dp"
 
