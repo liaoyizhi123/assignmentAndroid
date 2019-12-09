@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+
     tools:context=".view.MyView">
 
     <Button
@@ -62,5 +64,41 @@
         tools:layout_editor_absoluteX="168dp"
         tools:layout_editor_absoluteY="562dp" />
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
 
-</android.support.constraint.ConstraintLayout>
+        android:padding="1dp"/>
+        <Button
+            android:id="@+id/Date"
+            android:layout_width="fill_parent"
+            android:layout_height="70dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:text="Date In Ascending"
+            android:inputType="textCapWords"
+            android:textSize="30dp"
+            android:textColor="#072c0d"
+            />
+            <!--android:onClick="dateAscending"-->
+
+
+        <!--android:onClick="pathBrowsing"-->
+        <Button
+            android:id="@+id/Path"
+            android:layout_width="fill_parent"
+            android:layout_height="70dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:text="Path"
+
+            android:inputType="textCapWords"
+            android:textSize="30dp"
+
+
+            android:textColor="#072c0d"
+            />
+    </LinearLayout>

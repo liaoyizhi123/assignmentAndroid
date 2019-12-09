@@ -1,0 +1,42 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+     >
+    <!--tools:context=".PathBrowsing"
+         android:background="@drawable/shape"-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+
+        android:padding="1dp">
+        <TextView
+            android:id="@+id/TitleInPath"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Title"
+            android:inputType="textCapWords"
+            android:textColor="#072c0d"
+            android:textSize="50dp"
+            />
+    </LinearLayout>
+    <GridView
+        android:layout_below="@+id/TitleInPath"
+        android:id="@+id/GridView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:numColumns="2"
+        android:columnWidth="90dp"
+        android:horizontalSpacing="10dp"
+        android:verticalSpacing="10dp"
+        android:gravity="center"
+        android:stretchMode="columnWidth"
+
+     />
+
+
+</LinearLayout>
