@@ -58,7 +58,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-<!--        <activity android:name=".view.ImageDetails"></activity>-->
+        <activity android:name=".view.ImageDetails"></activity>
         <activity android:name=".view.FullScreenActivity" />
         <activity android:name=".view.GridAfterPath" />
         <activity android:name=".view.PathBrowsing" />

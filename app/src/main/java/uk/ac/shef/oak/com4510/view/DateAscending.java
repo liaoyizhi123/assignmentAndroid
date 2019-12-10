@@ -25,7 +25,7 @@ public class DateAscending extends AppCompatActivity {
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent =new Intent(getApplicationContext(),FullScreenActivity.class);
+                Intent intent =new Intent(getApplicationContext(),ImageDetails.class);
                 intent.putExtra("id", position);
                 startActivity(intent);
             }
