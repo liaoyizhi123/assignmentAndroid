@@ -29,15 +29,25 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyAQ4ZDGyQlHdzmY28GwFEG_JxtPFQ59sAU" />
 
+
         <activity
             android:name=".MapsActivity"
             android:label="@string/title_activity_maps">
+
+<!--        <activity-->
+<!--            android:name=".MapsActivity"-->
+<!--            android:label="@string/title_activity_maps">-->
+
 <!--            <intent-filter>-->
 <!--                <action android:name="android.intent.action.MAIN" />-->
 
 <!--                <category android:name="android.intent.category.LAUNCHER" />-->
 <!--            </intent-filter>-->
+
     </activity>
+
+<!--    </activity>-->
+
 
         <activity
             android:name=".view.MyView"
@@ -48,7 +58,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".view.ImageDetails"></activity>
+<!--        <activity android:name=".view.ImageDetails"></activity>-->
         <activity android:name=".view.FullScreenActivity" />
         <activity android:name=".view.GridAfterPath" />
         <activity android:name=".view.PathBrowsing" />

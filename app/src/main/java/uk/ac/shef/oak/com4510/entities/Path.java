@@ -18,6 +18,8 @@ public class Path {
 
     private String location;
 
+    public Path(){}
+
     public Path(String title, String photoIds, String location) {
         this.title = title;
         this.photoIds = photoIds;
