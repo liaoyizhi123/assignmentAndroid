@@ -4,7 +4,7 @@ android {
     signingConfigs {
         debug {
             storeFile file('E:\\Sheffield\\android\\MyApplication\\keyStore.jks')
-            storeFile file('D:\\Users\\LIAO\\AndroidStudioProjects\\assignment\\assignmentAndroid\\keyStore.jks')
+            storeFile file('E:\\assessment\\assignmentAndroid\\keyStore.jks')
             storePassword 'com4510iscool'
             keyAlias = 'com4510'
             keyPassword 'com4510iscool'

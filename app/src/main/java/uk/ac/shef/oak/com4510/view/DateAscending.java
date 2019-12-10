@@ -12,12 +12,14 @@ import uk.ac.shef.oak.com4510.adapter.DateAscendingAdapter;
 
 public class DateAscending extends AppCompatActivity {
     GridView gridView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_date_ascending);
         gridView=(GridView) findViewById(R.id.GridView1);
         gridView.setAdapter(new DateAscendingAdapter(this));
+
 
         //click for FullScreenActivity
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
