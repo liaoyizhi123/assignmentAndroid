@@ -3,9 +3,13 @@ package uk.ac.shef.oak.com4510.view;
 import android.content.Intent;
 import android.os.Bundle;
 
+import android.view.Display;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -33,10 +37,17 @@ public class MyView extends AppCompatActivity {
     //one
     private MyViewModel myViewModel;
 
+    private List<Image> liImages;
+    private EditText et;
+
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
+        et = (EditText) findViewById(R.id.et);
 
         //initialize
 //        myViewModel = ViewModelProviders.of(this).get(MyViewModel.class);
@@ -86,23 +97,23 @@ public class MyView extends AppCompatActivity {
 
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        System.out.println("--------------");
-        System.out.println("-------"+requestCode);
-        System.out.println("-------"+resultCode);
-
-        EasyImage.handleActivityResult(requestCode, resultCode, data, this, new DefaultCallback() {
-            @Override
-            public void onImagesPicked(@NonNull List<File> imageFiles, EasyImage.ImageSource source, int type) {
-
-                System.out.println("source-------"+source);
-                System.out.println("-------"+imageFiles);
-            }
-        });
-
-    }
+//    @Override
+//    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+//        super.onActivityResult(requestCode, resultCode, data);
+//        System.out.println("--------------");
+//        System.out.println("-------"+requestCode);
+//        System.out.println("-------"+resultCode);
+//
+//        EasyImage.handleActivityResult(requestCode, resultCode, data, this, new DefaultCallback() {
+//            @Override
+//            public void onImagesPicked(@NonNull List<File> imageFiles, EasyImage.ImageSource source, int type) {
+//
+//                System.out.println("source-------"+source);
+//                System.out.println("-------"+imageFiles);
+//            }
+//        });
+//
+//    }
 
 
     private void initEasyImage() {
@@ -129,12 +140,31 @@ public class MyView extends AppCompatActivity {
     }
 
 
+
     public void clickToStart(View view){
         Intent intent = new Intent();
         intent.setClass(MyView.this, MapsActivity.class);
 //        String account =getIntent().getStringExtra("username");
 ////        intent.putExtra("username",account);
-        startActivity(intent);
+
+        String title = et.getText().toString().trim();
+
+        if(title==null || title.equals("")) {
+
+            Display display = getWindowManager().getDefaultDisplay();
+            int height = display.getHeight();
+
+            Toast toast = Toast.makeText(this, "Please enter a valid title", Toast.LENGTH_LONG);
+            toast.setGravity(Gravity.TOP, 0, height / 4);
+            toast.show();
+        }else{
+            intent.putExtra("title",title);
+            startActivity(intent);
+
+        }
+
+
+
     }
 }
 
