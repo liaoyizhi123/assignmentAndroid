@@ -8,11 +8,13 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 import uk.ac.shef.oak.com4510.MyDatabase;
 import uk.ac.shef.oak.com4510.dao.ImageDao;
 import uk.ac.shef.oak.com4510.dao.PathDao;
 import uk.ac.shef.oak.com4510.entities.Image;
+import uk.ac.shef.oak.com4510.entities.Path;
 
 public class MyRepository extends ViewModel {
 
@@ -25,26 +27,48 @@ public class MyRepository extends ViewModel {
         pathDao = db.pathDao();
     }
 
-
-
-
-
     public LiveData<List<Image>> getAllImage(){
         return imageDao.findAll();
     }
 
+    public List<Path> getAllPath(){return pathDao.findAll();}
+
+
+
+
+
+
+
+
+
+    public Integer addPath(Path path){
+        Integer addId=0;
+        try {
+            addId = new insertAsyncTask2(pathDao).execute(path).get();
+
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return addId;
+    }
+
+
+
+
     //call by UI
     public void insertOneImage(Image image){
-        new insertAsyncTask(imageDao).execute(image);
+        new insertAsyncTask1(imageDao).execute(image);
     }
 
 
     //AsyncTask
-    private static class insertAsyncTask extends AsyncTask<Image,Void,Void> {
+    private static class insertAsyncTask1 extends AsyncTask<Image,Void,Void> {
 
         private final ImageDao imageDao;
 
-        public insertAsyncTask(ImageDao imageDao) {
+        public insertAsyncTask1(ImageDao imageDao) {
             this.imageDao = imageDao;
         }
 
@@ -56,6 +80,24 @@ public class MyRepository extends ViewModel {
         }
     }
 
+
+    private class insertAsyncTask2 extends AsyncTask<Path,Void,Integer> {
+        private final PathDao pathDao;
+        public insertAsyncTask2(PathDao pathDao) {
+            this.pathDao = pathDao;
+        }
+
+
+        @Override
+        protected Integer doInBackground(Path... paths) {
+            System.out.println("------------");
+            System.out.println(paths[0]);
+            long insertId = pathDao.insert(paths[0]);
+
+            Log.i("MyRepository", "path add: "+paths[0]+"");
+            return (int)insertId;
+        }
+    }
 }
 
 

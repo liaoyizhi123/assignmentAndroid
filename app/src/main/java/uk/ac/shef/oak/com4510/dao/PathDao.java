@@ -15,17 +15,17 @@ import uk.ac.shef.oak.com4510.entities.Path;
 @Dao
 public interface PathDao {
 
-    @Insert
-    void insert(Path path);
+    @Insert()
+    long insert(Path path);
 
     @Delete
     void deleteImage(Path path);
 
     @Query("select * from path")
-    LiveData<List<Path>> findAll();
+    List<Path> findAll();
 
     @Query("select * from path where id=:id")
-    LiveData<List<Path>> findById(int id);
+    List<Path> findById(int id);
 
 
 

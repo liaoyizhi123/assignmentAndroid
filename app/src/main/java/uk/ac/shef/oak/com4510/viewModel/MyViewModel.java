@@ -10,6 +10,7 @@ import androidx.lifecycle.MutableLiveData;
 import java.util.List;
 
 import uk.ac.shef.oak.com4510.entities.Image;
+import uk.ac.shef.oak.com4510.entities.Path;
 import uk.ac.shef.oak.com4510.repository.MyRepository;
 
 
@@ -41,6 +42,14 @@ public class MyViewModel extends AndroidViewModel {
     public void addImage(Image image){
         Image i = new Image("a","b","c",10.0,10.0,"a",1);
         myRepository.insertOneImage(i);
+    }
+
+    public int addPath(Path path){
+        return myRepository.addPath(path);
+    }
+
+    public List<Path> getAllPath(){
+        return myRepository.getAllPath();
     }
 
 }

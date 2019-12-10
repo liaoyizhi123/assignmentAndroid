@@ -14,7 +14,7 @@ import uk.ac.shef.oak.com4510.dao.PathDao;
 import uk.ac.shef.oak.com4510.entities.Image;
 import uk.ac.shef.oak.com4510.entities.Path;
 
-@Database(entities = {Image.class, Path.class},version = 5,exportSchema = false)
+@Database(entities = {Image.class, Path.class},version = 6,exportSchema = false)
 public abstract class MyDatabase extends RoomDatabase {
 
     public abstract ImageDao imageDao();

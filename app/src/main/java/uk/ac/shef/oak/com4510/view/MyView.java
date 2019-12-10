@@ -26,7 +26,9 @@ import pl.aprilapps.easyphotopicker.DefaultCallback;
 import pl.aprilapps.easyphotopicker.EasyImage;
 import uk.ac.shef.oak.com4510.MapsActivity;
 import uk.ac.shef.oak.com4510.R;
+import uk.ac.shef.oak.com4510.Util.Util;
 import uk.ac.shef.oak.com4510.entities.Image;
+import uk.ac.shef.oak.com4510.entities.Path;
 import uk.ac.shef.oak.com4510.viewModel.MyViewModel;
 
 public class MyView extends AppCompatActivity {
@@ -50,7 +52,7 @@ public class MyView extends AppCompatActivity {
         et = (EditText) findViewById(R.id.et);
 
         //initialize
-//        myViewModel = ViewModelProviders.of(this).get(MyViewModel.class);
+        myViewModel = ViewModelProviders.of(this).get(MyViewModel.class);
 //        myViewModel.getAllImages().observe(this, new Observer<List<Image>>() {
 //            @Override
 //            public void onChanged(@Nullable List<Image> images) {
@@ -151,14 +153,22 @@ public class MyView extends AppCompatActivity {
 
         if(title==null || title.equals("")) {
 
-            Display display = getWindowManager().getDefaultDisplay();
-            int height = display.getHeight();
+            Util.makeNote(MyView.this, this.getApplicationContext(),"Please enter a valid title");
 
-            Toast toast = Toast.makeText(this, "Please enter a valid title", Toast.LENGTH_LONG);
-            toast.setGravity(Gravity.TOP, 0, height / 4);
-            toast.show();
         }else{
-            intent.putExtra("title",title);
+
+            //add data
+//            long starttime = System.currentTimeMillis();
+//            String startTimeString = String.valueOf(starttime);
+//            int addId = myViewModel.addPath(new Path(title, null, null, startTimeString, null));
+
+
+//            List<Path> allPath = myViewModel.getAllPath();
+//            Util.makeNote(MyView.this, this.getApplicationContext(),String.valueOf(allPath.get(0).getId()));
+
+            //intent.putExtra("pathId",addId);
+            //intent.putExtra("title",title);
+
             startActivity(intent);
 
         }

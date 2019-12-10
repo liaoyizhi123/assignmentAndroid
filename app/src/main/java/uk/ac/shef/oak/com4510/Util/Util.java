@@ -1,5 +1,11 @@
 package uk.ac.shef.oak.com4510.Util;
 
+import android.app.Activity;
+import android.content.Context;
+import android.view.Display;
+import android.view.Gravity;
+import android.widget.Toast;
+
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
@@ -47,6 +53,15 @@ public class Util {
 
 
 
+    }
+
+    public static void makeNote(Activity activity, Context context, String str){
+        Display display = activity.getWindowManager().getDefaultDisplay();
+        int height = display.getHeight();
+
+        Toast toast = Toast.makeText(context, str, Toast.LENGTH_LONG);
+        toast.setGravity(Gravity.TOP, 0, height / 4);
+        toast.show();
     }
 
 }
