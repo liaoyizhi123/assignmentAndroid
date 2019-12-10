@@ -16,6 +16,22 @@
         android:orientation="vertical"
         android:padding="1dp"/>
 
+    <EditText
+        android:id="@+id/et"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:inputType="textCapWords"
+        android:textSize="30dp"
+        android:textColor="#072c0d"
+        android:layout_marginBottom="100dp"
+        android:layout_marginTop="50dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        />
+
     <Button
         android:id="@+id/ClicktoMap"
         android:layout_width="fill_parent"
