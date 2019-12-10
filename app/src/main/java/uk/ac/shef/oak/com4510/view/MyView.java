@@ -32,6 +32,8 @@ public class MyView extends AppCompatActivity {
     //one
     private MyViewModel myViewModel;
 
+    private List<Image> liImages;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
