@@ -20,6 +20,7 @@ import java.util.List;
 
 import pl.aprilapps.easyphotopicker.DefaultCallback;
 import pl.aprilapps.easyphotopicker.EasyImage;
+import uk.ac.shef.oak.com4510.MapsActivity;
 import uk.ac.shef.oak.com4510.R;
 import uk.ac.shef.oak.com4510.entities.Image;
 import uk.ac.shef.oak.com4510.viewModel.MyViewModel;
@@ -38,50 +39,50 @@ public class MyView extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         //initialize
-        myViewModel = ViewModelProviders.of(this).get(MyViewModel.class);
-        myViewModel.getAllImages().observe(this, new Observer<List<Image>>() {
-            @Override
-            public void onChanged(@Nullable List<Image> images) {
-                //
-                TextView tv = (TextView) findViewById(R.id.textView);
-                // if database is empty
-                if (images == null){
-                    tv.setText("click button");
-                }else {
-                    int size = images.size();
-                    tv.setText(size+" add");
-                }
-            }
-        });
-
-
-        Button button = findViewById(R.id.button);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                myViewModel.addImage(null);
-            }
-        });
-
-        Button btn_getImage = findViewById(R.id.btn_getImage);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                myViewModel.addImage(null);
-            }
-        });
-
-        //initialise EasyImage
-        initEasyImage();
-        //camera
-        Button cameraBtn = (Button) findViewById(R.id.camera);
-        cameraBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                EasyImage.openCamera(MyView.this, 0);
-            }
-        });
-
+//        myViewModel = ViewModelProviders.of(this).get(MyViewModel.class);
+//        myViewModel.getAllImages().observe(this, new Observer<List<Image>>() {
+//            @Override
+//            public void onChanged(@Nullable List<Image> images) {
+//                //
+//                TextView tv = (TextView) findViewById(R.id.textView);
+//                // if database is empty
+//                if (images == null){
+//                    tv.setText("click button");
+//                }else {
+//                    int size = images.size();
+//                    tv.setText(size+" add");
+//                }
+//            }
+//        });
+//
+//
+//        Button button = findViewById(R.id.button);
+//        button.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                myViewModel.addImage(null);
+//            }
+//        });
+//
+//        Button btn_getImage = findViewById(R.id.btn_getImage);
+//        button.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                myViewModel.addImage(null);
+//            }
+//        });
+//
+//        //initialise EasyImage
+//        initEasyImage();
+//        //camera
+//        Button cameraBtn = (Button) findViewById(R.id.camera);
+//        cameraBtn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                EasyImage.openCamera(MyView.this, 0);
+//            }
+//        });
+//
 
     }
 
@@ -127,6 +128,14 @@ public class MyView extends AppCompatActivity {
         startActivity(intent);
     }
 
+
+    public void clickToStart(View view){
+        Intent intent = new Intent();
+        intent.setClass(MyView.this, MapsActivity.class);
+//        String account =getIntent().getStringExtra("username");
+////        intent.putExtra("username",account);
+        startActivity(intent);
+    }
 }
 
 
