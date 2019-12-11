@@ -7,9 +7,11 @@ import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.location.Location;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Chronometer;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -70,7 +72,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private Map<String, LatLng> latLngMap = new LinkedHashMap<>();
     private StringBuilder stringBuilder = new StringBuilder();
     private List<LatLng> latLngList = new LinkedList<>();
-
+    private Chronometer chronometer;
 
     private FloatingActionButton mButtonCamera;
     private MapsViewModel mapsViewModel;
@@ -90,15 +92,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mapsViewModel = ViewModelProviders.of(this).get(MapsViewModel.class);
         Intent intent = getIntent();
         title = intent.getStringExtra("title");
+
         pathId = intent.getIntExtra("pathId",0);
-        System.out.println(title+"-----------");
-        System.out.println(pathId+"------------");
+
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
         pressureSensor = new PressureSensor(this);
         tempSensor = new TempSensor(this);
-       // startLocationUpdates();
+        // startLocationUpdates();
 
 //        sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
 //        sensor = sensorManager.getDefaultSensor(Sensor.TYPE_AMBIENT_TEMPERATURE);
@@ -119,8 +121,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 tempSensor.startTempSensor();
 
 
-
-
             }
         });
 //        mButtonStart.setEnabled(true);
@@ -134,14 +134,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 //                mButtonEnd.setEnabled(false);
                 pressureSensor.stopTempSensor();
                 tempSensor.stopTempSensor();
+                Intent intentMainFrame = new Intent(MapsActivity.this, MyView.class);
+                startActivity(intentMainFrame);
             }
         });
 //        mButtonEnd.setEnabled(false);
 
 
-
         //camera
-        mButtonCamera = (FloatingActionButton)findViewById(R.id.button_camera);
+        mButtonCamera = (FloatingActionButton) findViewById(R.id.button_camera);
         mButtonCamera.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -149,7 +150,19 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 EasyImage.openCamera(MapsActivity.this, 0);
             }
         });
-
+        chronometer = findViewById(R.id.showtime);
+        chronometer.start();
+        chronometer.setOnChronometerTickListener(new Chronometer.OnChronometerTickListener() {
+            @Override
+            public void onChronometerTick(Chronometer chronometer) {
+                long mill = SystemClock.elapsedRealtime() - chronometer.getBase();
+                if (mill > 3600000L) {
+                    chronometer.setFormat("0%s");
+                } else {
+                    chronometer.setFormat("00:%s");
+                }
+            }
+        });
 
     }
 
@@ -238,7 +251,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             mLastUpdateTime = DateFormat.getTimeInstance().format(new Date());
             Log.i("MAP", "new location " + mCurrentLocation.toString());
             if (mMap != null) {
-               // latLngs.add(new LatLng(mCurrentLocation.getLatitude(), mCurrentLocation.getLongitude()));
+                // latLngs.add(new LatLng(mCurrentLocation.getLatitude(), mCurrentLocation.getLongitude()));
                 SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                 String date = df.format(new Date());
                 LatLng newlocation = new LatLng(mCurrentLocation.getLatitude(), mCurrentLocation.getLongitude());

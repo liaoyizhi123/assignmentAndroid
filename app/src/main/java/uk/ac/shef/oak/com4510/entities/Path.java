@@ -23,6 +23,9 @@ public class Path {
     private String stopTimestamp;
 
 
+    @Ignore
+    public Path(){}
+
 
     public Path(String title, String startTimestamp){
         this.title=title;

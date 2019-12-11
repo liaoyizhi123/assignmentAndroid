@@ -29,7 +29,10 @@ public interface ImageDao {
     LiveData<List<Image>> findByIds(int ids);
 
     @Query("select * from Image")
-    LiveData<List<Image>> findAll();
+    List<Image> findAll();
+
+    @Query("select * from Image")
+    LiveData<List<Image>> getLiveImage();
 
     @Delete
     void deleteImage(Image image);
