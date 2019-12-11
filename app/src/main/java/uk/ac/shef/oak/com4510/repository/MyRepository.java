@@ -74,6 +74,15 @@ public class MyRepository extends ViewModel {
     }
 
 
+
+    /**
+     *
+     *
+     *
+     *
+     *
+     *
+     */
     //AsyncTask
     private static class insertAsyncTask1 extends AsyncTask<Image,Void,Void> {
 

@@ -82,6 +82,7 @@ public class MyView extends AppCompatActivity {
 //        cameraBtn.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View view) {
+//                initEasyImage()
 //                EasyImage.openCamera(MyView.this, 0);
 //            }
 //        });
@@ -89,32 +90,16 @@ public class MyView extends AppCompatActivity {
 
     }
 
-//    @Override
-//    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-//        super.onActivityResult(requestCode, resultCode, data);
-//        System.out.println("--------------");
-//        System.out.println("-------"+requestCode);
-//        System.out.println("-------"+resultCode);
-//
-//        EasyImage.handleActivityResult(requestCode, resultCode, data, this, new DefaultCallback() {
-//            @Override
-//            public void onImagesPicked(@NonNull List<File> imageFiles, EasyImage.ImageSource source, int type) {
-//
-//                System.out.println("source-------"+source);
-//                System.out.println("-------"+imageFiles);
-//            }
-//        });
-//
+
+
+
+//    private void initEasyImage() {
+//        EasyImage.configuration(this)
+//                .setImagesFolderName("EasyImage sample")
+//                .setCopyTakenPhotosToPublicGalleryAppFolder(true)
+//                .setCopyPickedImagesToPublicGalleryAppFolder(false)
+//                .setAllowMultiplePickInGallery(true);
 //    }
-
-
-    private void initEasyImage() {
-        EasyImage.configuration(this)
-                .setImagesFolderName("EasyImage sample")
-                .setCopyTakenPhotosToPublicGalleryAppFolder(true)
-                .setCopyPickedImagesToPublicGalleryAppFolder(false)
-                .setAllowMultiplePickInGallery(true);
-    }
     public void dateAscending(View view){
         Intent intent = new Intent();
         intent.setClass(MyView.this,DateAscending.class);
@@ -148,21 +133,20 @@ public class MyView extends AppCompatActivity {
         }else{
 
             //add data
-//            long starttime = System.currentTimeMillis();
-//            String startTimeString = String.valueOf(starttime);
-//            int addId = myViewModel.addPath(new Path(title, null, null, startTimeString, null));
+            long starttime = System.currentTimeMillis();
+            String startTimeString = String.valueOf(starttime);
+            int addId = myViewModel.addPath(new Path(title, null, null, startTimeString, null));
 
 
-            List<Path> allPath = myViewModel.getAllPath();
+            //List<Path> allPath = myViewModel.getAllPath();
 
 
-            Util.makeNote(MyView.this, this.getApplicationContext(),String.valueOf(allPath.size()));
+            //Util.makeNote(MyView.this, this.getApplicationContext(),String.valueOf(allPath.get(0).getStartTimestamp()));
 
+            intent.putExtra("pathId",addId);
+            intent.putExtra("title",title);
 
-            //intent.putExtra("pathId",addId);
-            //intent.putExtra("title",title);
-
-            //startActivity(intent);
+            startActivity(intent);
 
         }
 

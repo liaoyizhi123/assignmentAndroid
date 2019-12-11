@@ -2,6 +2,7 @@ package uk.ac.shef.oak.com4510.view;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.location.Location;
@@ -11,6 +12,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.FragmentActivity;
 
@@ -30,11 +33,19 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
 
+import java.io.File;
 import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.LinkedHashMap;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
+import pl.aprilapps.easyphotopicker.DefaultCallback;
+import pl.aprilapps.easyphotopicker.EasyImage;
 import uk.ac.shef.oak.com4510.PressureSensor;
 import uk.ac.shef.oak.com4510.R;
 import uk.ac.shef.oak.com4510.TempSensor;
@@ -52,6 +63,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private List<LatLng> latLngs = new ArrayList<LatLng>();
     private PressureSensor pressureSensor;
     private TempSensor tempSensor;
+    private Map<String, LatLng> latLngMap = new LinkedHashMap<>();
+    private StringBuilder stringBuilder = new StringBuilder();
+    private List<LatLng> latLngList = new LinkedList<>();
+
 //    private Barometer barometer;
 //    private Accelerometer accelerometer;
 //    private TextView textView;
@@ -65,8 +80,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
-        pressureSensor=new PressureSensor(this);
-        tempSensor=new TempSensor(this);
+        pressureSensor = new PressureSensor(this);
+        tempSensor = new TempSensor(this);
+       // startLocationUpdates();
 
 //        sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
 //        sensor = sensorManager.getDefaultSensor(Sensor.TYPE_AMBIENT_TEMPERATURE);
@@ -77,13 +93,19 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             @Override
             public void onClick(View v) {
                 startLocationUpdates();
+
+
 //                if (mButtonEnd != null)
 //                    mButtonEnd.setEnabled(true);
 //                mButtonStart.setEnabled(false);
                 pressureSensor.startTempSensor();
                 tempSensor.startTempSensor();
+
+
                 tempSensor.getLasttemp();
                 pressureSensor.getLasttemp();
+                addmarker(getLatestLatLng());
+
             }
         });
 //        mButtonStart.setEnabled(true);
@@ -100,6 +122,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             }
         });
 //        mButtonEnd.setEnabled(false);
+
+
+
+
+
+
     }
 
 
@@ -152,7 +180,20 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             mLastUpdateTime = DateFormat.getTimeInstance().format(new Date());
             Log.i("MAP", "new location " + mCurrentLocation.toString());
             if (mMap != null) {
+               // latLngs.add(new LatLng(mCurrentLocation.getLatitude(), mCurrentLocation.getLongitude()));
+                SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                String date = df.format(new Date());
+                LatLng newlocation = new LatLng(mCurrentLocation.getLatitude(), mCurrentLocation.getLongitude());
+                latLngMap.put(date, newlocation);
                 latLngs.add(new LatLng(mCurrentLocation.getLatitude(), mCurrentLocation.getLongitude()));
+                Double x = mCurrentLocation.getLatitude();
+                Double y = mCurrentLocation.getLongitude();
+                String tempx = String.valueOf(x);
+                String tempy = String.valueOf(y);
+                stringBuilder.append(tempx + "," + tempy + ";");
+                System.out.println("stringBuilder" + stringBuilder);
+                System.out.println(date);
+                Log.i("stringBuilder", String.valueOf(stringBuilder));
             }
 //            mMap.addMarker(new MarkerOptions().position(new LatLng(mCurrentLocation.getLatitude(), mCurrentLocation.getLongitude()))
 //            );
@@ -185,7 +226,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void onInfoWindowClick(Marker marker) {
         Toast.makeText(this, "Info  Windows", Toast.LENGTH_SHORT).show();
-        System.out.println("fuck");
+
     }
 
 
@@ -207,6 +248,25 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 //    public void onAccuracyChanged(Sensor sensor, int accuracy) {
 //
 //    }
+
+
+    private void addmarker(LatLng latLng) {
+        String temptitle = "Sheffield";
+        mMap.addMarker(new MarkerOptions().position(latLng).title(temptitle).snippet("Population: 4,137,400"));
+    }
+
+    private LatLng getLatestLatLng() {
+        LatLng finalLatlng = new LatLng(53.212046, -1.532907);
+        Set<String> keys = latLngMap.keySet();
+        for (String key : keys) {
+            latLngList.add(latLngMap.get(key));
+            // System.out.println(" value值：" + latLngMap.get(key));
+        }
+        finalLatlng = latLngList.get(latLngList.size() - 1);
+        System.out.println("finalLatlng" + finalLatlng);
+        return finalLatlng;
+    }
+
 }
 
 
