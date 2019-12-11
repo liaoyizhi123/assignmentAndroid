@@ -39,10 +39,7 @@ public class MyViewModel extends AndroidViewModel {
         return imagesToDisplay;
     }
 
-    public void addImage(Image image){
-        Image i = new Image("a","b","c",10.0,10.0,"a",1);
-        myRepository.insertOneImage(i);
-    }
+
 
     public int addPath(Path path){
         return myRepository.addPath(path);

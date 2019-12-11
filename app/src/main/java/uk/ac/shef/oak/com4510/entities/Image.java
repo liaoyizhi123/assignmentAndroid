@@ -22,7 +22,7 @@ public class Image {
     private String timestamp;
     private int pathId;
 
-
+    public Image(){}
 
     public Image(String url, String longitude, String latitude, Double temp, Double pressure, String timestamp, int pathId) {
         this.url = url;

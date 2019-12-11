@@ -93,13 +93,7 @@ public class MyView extends AppCompatActivity {
 
 
 
-//    private void initEasyImage() {
-//        EasyImage.configuration(this)
-//                .setImagesFolderName("EasyImage sample")
-//                .setCopyTakenPhotosToPublicGalleryAppFolder(true)
-//                .setCopyPickedImagesToPublicGalleryAppFolder(false)
-//                .setAllowMultiplePickInGallery(true);
-//    }
+
     public void dateAscending(View view){
         Intent intent = new Intent();
         intent.setClass(MyView.this,DateAscending.class);

@@ -16,6 +16,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.FragmentActivity;
+import androidx.lifecycle.ViewModelProviders;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
@@ -32,6 +33,7 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.io.File;
 import java.text.DateFormat;
@@ -49,6 +51,8 @@ import pl.aprilapps.easyphotopicker.EasyImage;
 import uk.ac.shef.oak.com4510.PressureSensor;
 import uk.ac.shef.oak.com4510.R;
 import uk.ac.shef.oak.com4510.TempSensor;
+import uk.ac.shef.oak.com4510.entities.Image;
+import uk.ac.shef.oak.com4510.viewModel.MapsViewModel;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, GoogleMap.OnInfoWindowClickListener {
     private GoogleMap mMap;
@@ -67,6 +71,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private StringBuilder stringBuilder = new StringBuilder();
     private List<LatLng> latLngList = new LinkedList<>();
 
+
+    private FloatingActionButton mButtonCamera;
+    private MapsViewModel mapsViewModel;
+
+
 //    private Barometer barometer;
 //    private Accelerometer accelerometer;
 //    private TextView textView;
@@ -77,6 +86,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
+
+        mapsViewModel = ViewModelProviders.of(this).get(MapsViewModel.class);
+
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
@@ -89,6 +101,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 //        barometer = new Barometer(this);
 //        accelerometer = new Accelerometer(this, barometer);
         mButtonStart = (Button) findViewById(R.id.button_start);
+
         mButtonStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -125,8 +138,43 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
 
 
+        //camera
+        mButtonCamera = (FloatingActionButton)findViewById(R.id.button_camera);
+        mButtonCamera.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                initEasyImage();
+                EasyImage.openCamera(MapsActivity.this, 0);
+            }
+        });
 
 
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        EasyImage.handleActivityResult(requestCode, resultCode, data, this, new DefaultCallback() {
+            @Override
+            public void onImagesPicked(@NonNull List<File> imageFiles, EasyImage.ImageSource source, int type) {
+                onPhotosReturned(imageFiles);
+            }
+        });
+
+    }
+
+    private void onPhotosReturned(List<File> imageFiles) {
+
+        File file = imageFiles.get(0);
+        String imageURL = file.getAbsolutePath();
+
+        //
+        LatLng latestLatLng = getLatestLatLng();
+
+
+//        new Image(imageURL,);
+//        mapsViewModel.addImage();
 
     }
 
@@ -265,6 +313,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         finalLatlng = latLngList.get(latLngList.size() - 1);
         System.out.println("finalLatlng" + finalLatlng);
         return finalLatlng;
+    }
+
+
+    private void initEasyImage() {
+        EasyImage.configuration(this)
+                .setImagesFolderName("EasyImage sample")
+                .setCopyTakenPhotosToPublicGalleryAppFolder(true)
+                .setCopyPickedImagesToPublicGalleryAppFolder(false)
+                .setAllowMultiplePickInGallery(true);
     }
 
 }

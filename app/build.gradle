@@ -50,6 +50,7 @@ dependencies {
     annotationProcessor 'androidx.room:room-compiler:2.2.2'
     implementation 'androidx.lifecycle:lifecycle-extensions:2.1.0'
 
+
 ///HUI
     implementation 'com.android.support.constraint:constraint-layout:1.1.3'
     testImplementation 'junit:junit:4.12'

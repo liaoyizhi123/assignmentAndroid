@@ -22,7 +22,7 @@ public class Path {
     private String stopTimestamp;
 
 
-
+    public Path(){}
 
     public Path(String title, String photoIds, String location, String startTimestamp, String stopTimestamp) {
         this.title = title;
