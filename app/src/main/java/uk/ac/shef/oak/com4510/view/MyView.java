@@ -104,7 +104,7 @@ public class MyView extends AppCompatActivity {
 
     public void pathBrowsing(View view){
         Intent intent = new Intent();
-        intent.setClass(MyView.this,GridAfterPath.class);
+        intent.setClass(MyView.this,PathBrowsing.class);
 //        String account =getIntent().getStringExtra("username");
 ////        intent.putExtra("username",account);
         startActivity(intent);

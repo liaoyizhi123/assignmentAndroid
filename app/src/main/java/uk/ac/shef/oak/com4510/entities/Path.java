@@ -3,6 +3,7 @@ package uk.ac.shef.oak.com4510.entities;
 
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 @Entity()
@@ -22,8 +23,12 @@ public class Path {
     private String stopTimestamp;
 
 
-    public Path(){}
 
+    public Path(String title, String startTimestamp){
+        this.title=title;
+        this.startTimestamp=startTimestamp;
+    }
+@Ignore
     public Path(String title, String photoIds, String location, String startTimestamp, String stopTimestamp) {
         this.title = title;
         this.photoIds = photoIds;

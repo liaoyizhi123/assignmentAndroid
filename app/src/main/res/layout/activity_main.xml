@@ -26,6 +26,7 @@
         android:inputType="textCapWords"
         android:textSize="30dp"
         android:textColor="#072c0d"
+        android:hint="Please input title Here"
         android:layout_marginBottom="100dp"
         android:layout_marginTop="50dp"
         android:paddingLeft="10dp"
@@ -33,6 +34,7 @@
         />
 
     <Button
+        
         android:id="@+id/ClicktoMap"
         android:layout_width="fill_parent"
         android:layout_height="70dp"
@@ -45,7 +47,12 @@
         android:textSize="30dp"
         android:textColor="#072c0d"
         />
-
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:textSize="20dp"
+    android:text="View Image below:"
+    android:textColor="#072c0d"></TextView>
     <Button
             android:id="@+id/Date"
             android:layout_width="fill_parent"
