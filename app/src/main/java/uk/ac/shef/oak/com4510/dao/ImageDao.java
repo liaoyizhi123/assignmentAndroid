@@ -7,6 +7,7 @@ import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import uk.ac.shef.oak.com4510.entities.Image;
@@ -27,7 +28,7 @@ public interface ImageDao {
     @Query("select * from image where id IN(:ids)")
     LiveData<List<Image>> findByIds(int ids);
 
-    @Query("select * from image order by timestamp")
+    @Query("select * from Image")
     LiveData<List<Image>> findAll();
 
     @Delete

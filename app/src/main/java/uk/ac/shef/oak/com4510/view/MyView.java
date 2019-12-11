@@ -163,13 +163,16 @@ public class MyView extends AppCompatActivity {
 //            int addId = myViewModel.addPath(new Path(title, null, null, startTimeString, null));
 
 
-//            List<Path> allPath = myViewModel.getAllPath();
-//            Util.makeNote(MyView.this, this.getApplicationContext(),String.valueOf(allPath.get(0).getId()));
+            List<Path> allPath = myViewModel.getAllPath();
+
+
+            Util.makeNote(MyView.this, this.getApplicationContext(),String.valueOf(allPath.size()));
+
 
             //intent.putExtra("pathId",addId);
             //intent.putExtra("title",title);
 
-            startActivity(intent);
+            //startActivity(intent);
 
         }
 

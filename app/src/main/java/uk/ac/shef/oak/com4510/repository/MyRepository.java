@@ -31,7 +31,18 @@ public class MyRepository extends ViewModel {
         return imageDao.findAll();
     }
 
-    public List<Path> getAllPath(){return pathDao.findAll();}
+    public List<Path> getAllPath(){
+        List<Path> paths = null;
+        try {
+            paths = new getAllPathAsyncTask(pathDao).execute().get();
+
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return paths;
+    }
 
 
 
@@ -86,8 +97,6 @@ public class MyRepository extends ViewModel {
         public insertAsyncTask2(PathDao pathDao) {
             this.pathDao = pathDao;
         }
-
-
         @Override
         protected Integer doInBackground(Path... paths) {
             System.out.println("------------");
@@ -96,6 +105,18 @@ public class MyRepository extends ViewModel {
 
             Log.i("MyRepository", "path add: "+paths[0]+"");
             return (int)insertId;
+        }
+    }
+
+    private class getAllPathAsyncTask extends AsyncTask<Void,Void,List<Path>>{
+        private final PathDao pathDao;
+        public getAllPathAsyncTask(PathDao pathDao) {
+            this.pathDao = pathDao;
+        }
+        @Override
+        protected List<Path> doInBackground(Void... voids) {
+            List<Path> allPath = pathDao.findAll();
+            return allPath;
         }
     }
 }
