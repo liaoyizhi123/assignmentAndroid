@@ -16,15 +16,15 @@ public class Image {
     private String longitude;
     private String latitude;
 
-    private Double temp;
-    private Double pressure;
+    private String temp;
+    private String pressure;
 
     private String timestamp;
     private int pathId;
 
     public Image(){}
 
-    public Image(String url, String longitude, String latitude, Double temp, Double pressure, String timestamp, int pathId) {
+    public Image(String url, String longitude, String latitude, String temp, String pressure, String timestamp, int pathId) {
         this.url = url;
         this.longitude = longitude;
         this.latitude = latitude;
@@ -52,11 +52,11 @@ public class Image {
         return latitude;
     }
 
-    public Double getTemp() {
+    public String getTemp() {
         return temp;
     }
 
-    public Double getPressure() {
+    public String getPressure() {
         return pressure;
     }
 
@@ -80,11 +80,11 @@ public class Image {
         this.latitude = latitude;
     }
 
-    public void setTemp(Double temp) {
+    public void setTemp(String temp) {
         this.temp = temp;
     }
 
-    public void setPressure(Double pressure) {
+    public void setPressure(String pressure) {
         this.pressure = pressure;
     }
 

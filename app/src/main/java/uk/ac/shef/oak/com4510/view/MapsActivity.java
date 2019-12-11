@@ -74,8 +74,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     private FloatingActionButton mButtonCamera;
     private MapsViewModel mapsViewModel;
-
-
+    private int pathId;
+    private String title;
 //    private Barometer barometer;
 //    private Accelerometer accelerometer;
 //    private TextView textView;
@@ -88,7 +88,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         setContentView(R.layout.activity_maps);
 
         mapsViewModel = ViewModelProviders.of(this).get(MapsViewModel.class);
-
+        Intent intent = getIntent();
+        title = intent.getStringExtra("title");
+        pathId = intent.getIntExtra("pathId",0);
+        System.out.println(title+"-----------");
+        System.out.println(pathId+"------------");
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
@@ -115,9 +119,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 tempSensor.startTempSensor();
 
 
-                tempSensor.getLasttemp();
-                pressureSensor.getLasttemp();
-                addmarker(getLatestLatLng());
+
 
             }
         });
@@ -171,10 +173,18 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         //
         LatLng latestLatLng = getLatestLatLng();
+        String latitude = String.valueOf(latestLatLng.latitude);
+        String longitude = String.valueOf(latestLatLng.longitude);
 
+        String timestamp = String.valueOf(System.currentTimeMillis());
 
-//        new Image(imageURL,);
-//        mapsViewModel.addImage();
+        String lasttemp1 = tempSensor.getLasttemp();
+        String lastpressure = pressureSensor.getLasttemp();
+
+        Image image = new Image(imageURL, longitude, latitude, timestamp, lastpressure, lasttemp1, pathId);
+        mapsViewModel.addImage(image);
+
+        addmarker(latestLatLng);
 
     }
 
