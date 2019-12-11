@@ -90,15 +90,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mapsViewModel = ViewModelProviders.of(this).get(MapsViewModel.class);
         Intent intent = getIntent();
         title = intent.getStringExtra("title");
-        pathId = intent.getIntExtra("pathId",0);
-        System.out.println(title+"-----------");
-        System.out.println(pathId+"------------");
+        pathId = intent.getIntExtra("pathId", 0);
+        System.out.println(title + "-----------");
+        System.out.println(pathId + "------------");
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
         pressureSensor = new PressureSensor(this);
         tempSensor = new TempSensor(this);
-       // startLocationUpdates();
+        // startLocationUpdates();
 
 //        sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
 //        sensor = sensorManager.getDefaultSensor(Sensor.TYPE_AMBIENT_TEMPERATURE);
@@ -119,8 +119,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 tempSensor.startTempSensor();
 
 
-
-
             }
         });
 //        mButtonStart.setEnabled(true);
@@ -134,14 +132,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 //                mButtonEnd.setEnabled(false);
                 pressureSensor.stopTempSensor();
                 tempSensor.stopTempSensor();
+                Intent intentMainFrame = new Intent(MapsActivity.this, MyView.class);
+                startActivity(intentMainFrame);
             }
         });
 //        mButtonEnd.setEnabled(false);
 
 
-
         //camera
-        mButtonCamera = (FloatingActionButton)findViewById(R.id.button_camera);
+        mButtonCamera = (FloatingActionButton) findViewById(R.id.button_camera);
         mButtonCamera.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -238,7 +237,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             mLastUpdateTime = DateFormat.getTimeInstance().format(new Date());
             Log.i("MAP", "new location " + mCurrentLocation.toString());
             if (mMap != null) {
-               // latLngs.add(new LatLng(mCurrentLocation.getLatitude(), mCurrentLocation.getLongitude()));
+                // latLngs.add(new LatLng(mCurrentLocation.getLatitude(), mCurrentLocation.getLongitude()));
                 SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                 String date = df.format(new Date());
                 LatLng newlocation = new LatLng(mCurrentLocation.getLatitude(), mCurrentLocation.getLongitude());
