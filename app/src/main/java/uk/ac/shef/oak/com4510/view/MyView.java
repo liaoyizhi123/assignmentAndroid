@@ -3,28 +3,18 @@ package uk.ac.shef.oak.com4510.view;
 import android.content.Intent;
 import android.os.Bundle;
 
-import android.view.Display;
-import android.view.Gravity;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
-import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.LiveData;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
-import java.io.File;
 import java.util.List;
 
 
-import pl.aprilapps.easyphotopicker.DefaultCallback;
 import pl.aprilapps.easyphotopicker.EasyImage;
-import uk.ac.shef.oak.com4510.MapsActivity;
 import uk.ac.shef.oak.com4510.R;
 import uk.ac.shef.oak.com4510.Util.Util;
 import uk.ac.shef.oak.com4510.entities.Image;

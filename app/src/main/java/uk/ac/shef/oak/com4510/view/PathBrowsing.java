@@ -8,7 +8,7 @@ import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import uk.ac.shef.oak.com4510.MapsActivity;
+
 import uk.ac.shef.oak.com4510.R;
 
 

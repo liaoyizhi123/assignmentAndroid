@@ -1,4 +1,4 @@
-package uk.ac.shef.oak.com4510;
+package uk.ac.shef.oak.com4510.view;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
@@ -34,6 +34,10 @@ import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
+import uk.ac.shef.oak.com4510.PressureSensor;
+import uk.ac.shef.oak.com4510.R;
+import uk.ac.shef.oak.com4510.TempSensor;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, GoogleMap.OnInfoWindowClickListener {
     private GoogleMap mMap;
