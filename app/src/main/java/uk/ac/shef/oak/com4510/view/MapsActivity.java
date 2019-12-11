@@ -7,9 +7,11 @@ import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.location.Location;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Chronometer;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -70,7 +72,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private Map<String, LatLng> latLngMap = new LinkedHashMap<>();
     private StringBuilder stringBuilder = new StringBuilder();
     private List<LatLng> latLngList = new LinkedList<>();
-
+    private Chronometer chronometer;
 
     private FloatingActionButton mButtonCamera;
     private MapsViewModel mapsViewModel;
@@ -148,7 +150,19 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 EasyImage.openCamera(MapsActivity.this, 0);
             }
         });
-
+        chronometer = findViewById(R.id.showtime);
+        chronometer.start();
+        chronometer.setOnChronometerTickListener(new Chronometer.OnChronometerTickListener() {
+            @Override
+            public void onChronometerTick(Chronometer chronometer) {
+                long mill = SystemClock.elapsedRealtime() - chronometer.getBase();
+                if (mill > 3600000L) {
+                    chronometer.setFormat("0%s");
+                } else {
+                    chronometer.setFormat("00:%s");
+                }
+            }
+        });
 
     }
 
