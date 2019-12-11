@@ -27,8 +27,16 @@ public class MyRepository extends ViewModel {
         pathDao = db.pathDao();
     }
 
-    public LiveData<List<Image>> getAllImage(){
-        return imageDao.findAll();
+    public List<Image> getAllImage() {
+        List<Image> images = null;
+        try {
+            images = new getImageAsyncTask(imageDao).execute().get();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return images;
     }
 
     public List<Path> getAllPath(){
@@ -44,7 +52,9 @@ public class MyRepository extends ViewModel {
         return paths;
     }
 
-
+    public LiveData<List<Image>> getAllImageLive() {
+        return imageDao.getLiveImage();
+    }
 
 
 
@@ -70,7 +80,7 @@ public class MyRepository extends ViewModel {
 
     //call by UI
     public void insertOneImage(Image image){
-        new insertAsyncTask1(imageDao).execute(image);
+        new imageAsyncTask(imageDao).execute(image);
     }
 
 
@@ -84,11 +94,11 @@ public class MyRepository extends ViewModel {
      *
      */
     //AsyncTask
-    private static class insertAsyncTask1 extends AsyncTask<Image,Void,Void> {
+    private static class imageAsyncTask extends AsyncTask<Image,Void,Void> {
 
         private final ImageDao imageDao;
 
-        public insertAsyncTask1(ImageDao imageDao) {
+        public imageAsyncTask(ImageDao imageDao) {
             this.imageDao = imageDao;
         }
 
@@ -126,6 +136,18 @@ public class MyRepository extends ViewModel {
         protected List<Path> doInBackground(Void... voids) {
             List<Path> allPath = pathDao.findAll();
             return allPath;
+        }
+    }
+
+    private class getImageAsyncTask extends AsyncTask<Void,Void,List<Image>>{
+        private final ImageDao imageDao;
+        public getImageAsyncTask(ImageDao imageDao) {
+            this.imageDao = imageDao;
+        }
+
+        @Override
+        protected List<Image> doInBackground(Void... voids) {
+            return imageDao.findAll();
         }
     }
 }

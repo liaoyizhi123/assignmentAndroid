@@ -3,6 +3,7 @@ package uk.ac.shef.oak.com4510.entities;
 
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 @Entity()
@@ -22,6 +23,7 @@ public class Image {
     private String timestamp;
     private int pathId;
 
+    @Ignore
     public Image(){}
 
     public Image(String url, String longitude, String latitude, String temp, String pressure, String timestamp, int pathId) {
@@ -98,5 +100,19 @@ public class Image {
 
     public void setPathId(int pathId) {
         this.pathId = pathId;
+    }
+
+    @Override
+    public String toString() {
+        return "Image{" +
+                "id=" + id +
+                ", url='" + url + '\'' +
+                ", longitude='" + longitude + '\'' +
+                ", latitude='" + latitude + '\'' +
+                ", temp='" + temp + '\'' +
+                ", pressure='" + pressure + '\'' +
+                ", timestamp='" + timestamp + '\'' +
+                ", pathId=" + pathId +
+                '}';
     }
 }

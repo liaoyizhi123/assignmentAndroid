@@ -27,9 +27,10 @@ public class ImageDetails extends AppCompatActivity {
 //        imageView1.setAdapter(new DateAscendingAdapter(this));
 
         //Load details
-        int position =getIntent().getExtras().getInt("id");
+        int id =getIntent().getIntExtra("id",0);
+
         GridAfterPathAdapter gridAfterPathAdapter =new GridAfterPathAdapter(this);
-        imageView1.setImageResource(gridAfterPathAdapter.imageArray[position]);
+        //imageView1.setImageResource(gridAfterPathAdapter.imageArray[position]);
 
         //CLICK FOR FullScreenActivity
         imageView1.setOnClickListener(new AdapterView.OnClickListener() {

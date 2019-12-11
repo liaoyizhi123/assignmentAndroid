@@ -91,6 +91,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         Intent intent = getIntent();
         title = intent.getStringExtra("title");
         pathId = intent.getIntExtra("pathId",0);
+        System.out.println("pathId="+pathId);
         System.out.println(title+"-----------");
         System.out.println(pathId+"------------");
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()

@@ -9,6 +9,7 @@ import android.widget.EditText;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import java.util.List;
@@ -43,20 +44,7 @@ public class MyView extends AppCompatActivity {
 
         //initialize
         myViewModel = ViewModelProviders.of(this).get(MyViewModel.class);
-//        myViewModel.getAllImages().observe(this, new Observer<List<Image>>() {
-//            @Override
-//            public void onChanged(@Nullable List<Image> images) {
-//                //
-//                TextView tv = (TextView) findViewById(R.id.textView);
-//                // if database is empty
-//                if (images == null){
-//                    tv.setText("click button");
-//                }else {
-//                    int size = images.size();
-//                    tv.setText(size+" add");
-//                }
-//            }
-//        });
+
 //
 //
 //        Button button = findViewById(R.id.button);
