@@ -27,11 +27,6 @@ public class Path {
     public Path(){}
 
 
-    public Path(String title, String startTimestamp){
-        this.title=title;
-        this.startTimestamp=startTimestamp;
-    }
-@Ignore
     public Path(String title, String photoIds, String location, String startTimestamp, String stopTimestamp) {
         this.title = title;
         this.photoIds = photoIds;

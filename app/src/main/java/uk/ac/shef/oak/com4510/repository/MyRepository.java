@@ -56,7 +56,17 @@ public class MyRepository extends ViewModel {
         return imageDao.getLiveImage();
     }
 
+    public LiveData<Image> getImage(int imageId){
+        return imageDao.findById(imageId);
+    }
 
+    public LiveData<Path> getPath(int pathId){
+        System.out.println("ResPa"+pathId);
+        Path value = pathDao.findById().getValue();
+        System.out.println("ResPa"+value);
+
+        return pathDao.findById();
+    }
 
 
 
@@ -78,10 +88,7 @@ public class MyRepository extends ViewModel {
 
 
 
-    //call by UI
-    public void insertOneImage(Image image){
-        new imageAsyncTask(imageDao).execute(image);
-    }
+
 
 
 
@@ -93,6 +100,11 @@ public class MyRepository extends ViewModel {
      *
      *
      */
+    //call by UI
+    public void insertOneImage(Image image){
+        new imageAsyncTask(imageDao).execute(image);
+    }
+
     //AsyncTask
     private static class imageAsyncTask extends AsyncTask<Image,Void,Void> {
 

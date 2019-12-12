@@ -30,6 +30,8 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptor;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -136,6 +138,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 tempSensor.stopTempSensor();
                 Intent intentMainFrame = new Intent(MapsActivity.this, MyView.class);
                 startActivity(intentMainFrame);
+
             }
         });
 //        mButtonEnd.setEnabled(false);
@@ -194,8 +197,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         String lasttemp1 = tempSensor.getLasttemp();
         String lastpressure = pressureSensor.getLasttemp();
 
-        Image image = new Image(imageURL, longitude, latitude, timestamp, lastpressure, lasttemp1, pathId);
+        Image image = new Image(imageURL, longitude, latitude, lasttemp1, lastpressure, timestamp, pathId);
         mapsViewModel.addImage(image);
+
 
         addmarker(latestLatLng);
 
@@ -234,7 +238,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         super.onResume();
         //accelerometer.startAccelerometerRecording();
         mLocationRequest = new LocationRequest();
-        mLocationRequest.setInterval(10000);
+        //This should be 20000 but it was quite slow  so I change to 6000
+        mLocationRequest.setInterval(6000);
         mLocationRequest.setFastestInterval(5000);
         mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
@@ -269,7 +274,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 //            mMap.addMarker(new MarkerOptions().position(new LatLng(mCurrentLocation.getLatitude(), mCurrentLocation.getLongitude()))
 //            );
             polyline = mMap.addPolyline(new PolylineOptions().
-                    addAll(latLngs).width(10).color(Color.argb(255, 1, 1, 1)));
+                    addAll(latLngs).width(10).color(Color.BLUE));
             mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(mCurrentLocation.getLatitude(), mCurrentLocation.getLongitude()), 14.0f));
 
         }
@@ -323,7 +328,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     private void addmarker(LatLng latLng) {
         String temptitle = "Sheffield";
-        mMap.addMarker(new MarkerOptions().position(latLng).title(temptitle).snippet("Population: 4,137,400"));
+        mMap.addMarker(new MarkerOptions().position(latLng).title(temptitle).snippet("Population: 4,137,400").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
     }
 
     private LatLng getLatestLatLng() {

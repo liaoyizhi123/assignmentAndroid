@@ -23,7 +23,7 @@ public interface ImageDao {
     LiveData<Image> findById(int id);
 
     @Query("select * from image where pathId= :pathId")
-    LiveData<Image> findByPathId(int pathId);
+    LiveData<List<Image>> findByPathId(int pathId);
 
     @Query("select * from image where id IN(:ids)")
     LiveData<List<Image>> findByIds(int ids);

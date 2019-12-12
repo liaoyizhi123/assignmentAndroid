@@ -31,7 +31,7 @@ public class MyViewModel extends AndroidViewModel {
 
     }
 
-//    //getter for LiveData
+    //    //getter for LiveData
     public LiveData<List<Image>> getAllImages(){
         if(imagesToDisplay == null){
             imagesToDisplay = new MutableLiveData<List<Image>>();

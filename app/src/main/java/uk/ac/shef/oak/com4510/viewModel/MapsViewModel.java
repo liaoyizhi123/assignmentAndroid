@@ -23,4 +23,5 @@ public class MapsViewModel extends AndroidViewModel {
 
         myRepository.insertOneImage(image);
     }
+
 }

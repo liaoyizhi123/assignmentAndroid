@@ -24,8 +24,8 @@ public interface PathDao {
     @Query("select * from path")
     List<Path> findAll();
 
-    @Query("select * from path where id=:id")
-    List<Path> findById(int id);
+    @Query("select * from path where id= 1")
+    LiveData<Path> findById();
 
 
 
