@@ -34,8 +34,8 @@ public class PathBrowsing extends AppCompatActivity {
 
 
 
-        myDataset[0]=new Path("Walk to the 7 bridges",null,null,null,null);
-        myDataset[1]=new Path("Walk to the other bridges", null,null,null,null);
+        myDataset[0]=new Path("Walk to the 7 bridges",null,null,"23/10/2019 12:24",null);
+        myDataset[1]=new Path("Walk to the other bridges", null,null,"23/10/2019 22:24",null);
         pathBrowsingAdapter = new PathBrowsingAdapter(myDataset);
         recycleView.setAdapter(pathBrowsingAdapter);
 

@@ -67,8 +67,8 @@ public class ImageDetails extends AppCompatActivity {
                 //System.out.println("onchange"+image);
                 Bitmap bitmap = BitmapFactory.decodeFile(image.getUrl());
                 imageView1.setImageBitmap(bitmap);
-                temp.setText(image.getTemp());
-                pressure.setText(image.getPressure());
+                temp.setText("Temp: "+image.getTemp()+"C");
+                pressure.setText("Pressure: "+image.getPressure()+"mbars");
 
             }
         });
@@ -78,7 +78,7 @@ public class ImageDetails extends AppCompatActivity {
             @Override
             public void onChanged(Path path) {
                 System.out.println("getPathPathId="+path);
-                title.setText(path.getTitle());
+                title.setText("Title: "+path.getTitle());
 
 
             }
