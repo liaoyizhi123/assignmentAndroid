@@ -65,8 +65,8 @@ public class ImageDetails extends AppCompatActivity {
             public void onChanged(Image image) {
                 Bitmap bitmap = BitmapFactory.decodeFile(image.getUrl());
                 imageView1.setImageBitmap(bitmap);
-                temp.setText(image.getTemp());
-                pressure.setText(image.getPressure());
+                temp.setText("Temp: "+image.getTemp()+"C");
+                pressure.setText("Pressure: "+image.getPressure()+"mbars");
 
             }
         });
@@ -75,7 +75,9 @@ public class ImageDetails extends AppCompatActivity {
         imageDetailsViewModel.getPath(pathId).observe(this, new Observer<Path>() {
             @Override
             public void onChanged(Path path) {
-                title.setText(path.getTitle());
+
+                title.setText("Title: "+path.getTitle());
+
 
 
             }

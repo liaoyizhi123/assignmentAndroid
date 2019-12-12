@@ -20,7 +20,7 @@
             android:text="Title"
             android:inputType="textCapWords"
             android:textColor="#072c0d"
-            android:textSize="50dp"
+            android:textSize="30dp"
             />
     </LinearLayout>
     <GridView
