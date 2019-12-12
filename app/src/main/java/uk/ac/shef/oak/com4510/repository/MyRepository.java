@@ -61,11 +61,8 @@ public class MyRepository extends ViewModel {
     }
 
     public LiveData<Path> getPath(int pathId){
-        System.out.println("ResPa"+pathId);
-        Path value = pathDao.findById().getValue();
-        System.out.println("ResPa"+value);
-
-        return pathDao.findById();
+        Path value = pathDao.findById(pathId).getValue();
+        return pathDao.findById(pathId);
     }
 
 
@@ -130,8 +127,6 @@ public class MyRepository extends ViewModel {
         }
         @Override
         protected Integer doInBackground(Path... paths) {
-            System.out.println("------------");
-            System.out.println(paths[0]);
             long insertId = pathDao.insert(paths[0]);
 
             Log.i("MyRepository", "path add: "+paths[0]+"");

@@ -27,7 +27,6 @@ public class ImageDetailsViewModel extends AndroidViewModel {
     }
 
     public LiveData<Path> getPath(Integer pathId){
-        System.out.println("viewmodel path="+pathId);
         return myRepository.getPath(pathId);
     }
 

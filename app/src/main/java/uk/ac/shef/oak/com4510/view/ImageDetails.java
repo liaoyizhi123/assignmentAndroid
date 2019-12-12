@@ -56,7 +56,6 @@ public class ImageDetails extends AppCompatActivity {
         int id =getIntent().getIntExtra("id",0);
 
         int pathId =getIntent().getIntExtra("pathId",0);
-
         GridAfterPathAdapter gridAfterPathAdapter =new GridAfterPathAdapter(this);
         //imageView1.setImageResource(gridAfterPathAdapter.imageArray[position]);
 
@@ -64,7 +63,6 @@ public class ImageDetails extends AppCompatActivity {
         imageDetailsViewModel.getImage(id).observe(this, new Observer<Image>() {
             @Override
             public void onChanged(Image image) {
-                //System.out.println("onchange"+image);
                 Bitmap bitmap = BitmapFactory.decodeFile(image.getUrl());
                 imageView1.setImageBitmap(bitmap);
                 temp.setText(image.getTemp());
@@ -77,7 +75,6 @@ public class ImageDetails extends AppCompatActivity {
         imageDetailsViewModel.getPath(pathId).observe(this, new Observer<Path>() {
             @Override
             public void onChanged(Path path) {
-                System.out.println("getPathPathId="+path);
                 title.setText(path.getTitle());
 
 

@@ -49,7 +49,7 @@ public class DateAscending extends AppCompatActivity {
                         Intent intent =new Intent(getApplicationContext(),ImageDetails.class);
 
                         intent.putExtra("id", (int)id);
-
+                        intent.putExtra("pathId",images.get(position).getPathId());
                         startActivity(intent);
                     }
                 });
