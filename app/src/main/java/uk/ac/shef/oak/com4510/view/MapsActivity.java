@@ -358,6 +358,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 .setAllowMultiplePickInGallery(true);
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Path path = new Path(null, null, stringBuilder.toString(), null, String.valueOf(System.currentTimeMillis()));
+        mapsViewModel.updatePath(pathId,path);
+
+        pressureSensor.stopTempSensor();
+        tempSensor.stopTempSensor();
+    }
 }
 
 
