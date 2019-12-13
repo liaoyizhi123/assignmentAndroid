@@ -21,7 +21,7 @@ public class FullScreenActivity extends AppCompatActivity {
 
         Intent i =getIntent();
         int position =i.getExtras().getInt("id");
-        GridAfterPathAdapter gridAfterPathAdapter =new GridAfterPathAdapter(this);
-        imageView.setImageResource(gridAfterPathAdapter.imageArray[position]);
+//        GridAfterPathAdapter gridAfterPathAdapter =new GridAfterPathAdapter(this);
+//        imageView.setImageResource(gridAfterPathAdapter.imageArray[position]);
     }
 }

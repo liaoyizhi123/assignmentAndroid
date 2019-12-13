@@ -4,30 +4,30 @@ import android.app.Application;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
+import androidx.lifecycle.LiveData;
+
+import java.util.List;
 
 import uk.ac.shef.oak.com4510.entities.Image;
 import uk.ac.shef.oak.com4510.entities.Path;
 import uk.ac.shef.oak.com4510.repository.MyRepository;
 
-public class MapsViewModel extends AndroidViewModel {
+public class GridAfterPathViewModel extends AndroidViewModel {
 
     private final MyRepository myRepository;
+    //data to display
+    LiveData<List<Path>> imagesToDisplay;
 
-    public MapsViewModel(@NonNull Application application) {
+
+    public GridAfterPathViewModel(@NonNull Application application) {
         super(application);
         myRepository = new MyRepository(application);
 
-
     }
 
-    public void updatePath(int id,Path path){
-        path.setId(id);
-        myRepository.updatePath(path);
+    public LiveData<List<Image>> getImageLiveByPathId(int pathId){
+        return myRepository.getImageLiveByPathId(pathId);
     }
 
-    public void addImage(Image image){
-
-        myRepository.insertOneImage(image);
-    }
 
 }

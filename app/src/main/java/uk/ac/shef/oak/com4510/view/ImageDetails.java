@@ -56,7 +56,7 @@ public class ImageDetails extends AppCompatActivity {
         int id =getIntent().getIntExtra("id",0);
 
         int pathId =getIntent().getIntExtra("pathId",0);
-        GridAfterPathAdapter gridAfterPathAdapter =new GridAfterPathAdapter(this);
+        //GridAfterPathAdapter gridAfterPathAdapter =new GridAfterPathAdapter(this);
         //imageView1.setImageResource(gridAfterPathAdapter.imageArray[position]);
 
         imageDetailsViewModel = ViewModelProviders.of(this).get(ImageDetailsViewModel.class);

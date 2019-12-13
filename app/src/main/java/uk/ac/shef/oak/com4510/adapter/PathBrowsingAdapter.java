@@ -57,7 +57,7 @@ public class PathBrowsingAdapter extends RecyclerView.Adapter<PathBrowsingAdapte
                 //Pass Title
                 String Title = items[position].getTitle();
                 intent.putExtra("Title", Title);
-
+                intent.putExtra("pathId", items[position].getId());
                 v.getContext().startActivity(intent);
             }
         });

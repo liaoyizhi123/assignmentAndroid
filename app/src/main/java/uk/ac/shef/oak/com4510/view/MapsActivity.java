@@ -56,6 +56,7 @@ import uk.ac.shef.oak.com4510.PressureSensor;
 import uk.ac.shef.oak.com4510.R;
 import uk.ac.shef.oak.com4510.TempSensor;
 import uk.ac.shef.oak.com4510.entities.Image;
+import uk.ac.shef.oak.com4510.entities.Path;
 import uk.ac.shef.oak.com4510.viewModel.MapsViewModel;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, GoogleMap.OnInfoWindowClickListener {
@@ -134,6 +135,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 //                if (mButtonStart != null)
 //                    mButtonStart.setEnabled(true);
 //                mButtonEnd.setEnabled(false);
+
+                //update Path
+                Path path = new Path(null, null, stringBuilder.toString(), null, String.valueOf(System.currentTimeMillis()));
+                mapsViewModel.updatePath(pathId,path);
+
                 pressureSensor.stopTempSensor();
                 tempSensor.stopTempSensor();
                 Intent intentMainFrame = new Intent(MapsActivity.this, MyView.class);

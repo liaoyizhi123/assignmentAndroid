@@ -7,7 +7,7 @@ android {
 
             storeFile file('E:\\asss1\\assignmentAndroid\\keyStore.jks')
 
-            storeFile file('U:\\AndroidNewest\\assignmentAndroid\\keyStore.jks')
+            storeFile file('D:\\Users\\LIAO\\AndroidStudioProjects\\MyAssignment\\keyStore.jks')
 
             storePassword 'com4510iscool'
             keyAlias = 'com4510'

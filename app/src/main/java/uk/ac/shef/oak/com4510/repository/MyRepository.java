@@ -27,6 +27,8 @@ public class MyRepository extends ViewModel {
         pathDao = db.pathDao();
     }
 
+
+
     public List<Image> getAllImage() {
         List<Image> images = null;
         try {
@@ -52,6 +54,8 @@ public class MyRepository extends ViewModel {
         return paths;
     }
 
+    public LiveData<List<Path>> getAllPathsLive(){ return pathDao.getAllPaths();}
+
     public LiveData<List<Image>> getAllImageLive() {
         return imageDao.getLiveImage();
     }
@@ -65,6 +69,7 @@ public class MyRepository extends ViewModel {
         return pathDao.findById(pathId);
     }
 
+    public LiveData<List<Image>> getImageLiveByPathId(int pathId){return imageDao.findByPathId(pathId);}
 
 
 
@@ -97,6 +102,24 @@ public class MyRepository extends ViewModel {
      *
      *
      */
+    public void updatePath(Path path){
+        new pathAsyncTask(pathDao).execute(path);
+    }
+    //updatePath AsyncTask
+    private static class pathAsyncTask extends AsyncTask<Path,Void,Void> {
+
+        private final PathDao pathDao;
+        public pathAsyncTask( PathDao pathDao) {
+            this.pathDao = pathDao;
+        }
+
+        @Override
+        protected Void doInBackground(Path... paths) {
+            pathDao.updatePath(paths[0].getId(), paths[0].getLocation(), paths[0].getStopTimestamp());
+            return null;
+        }
+    }
+
     //call by UI
     public void insertOneImage(Image image){
         new imageAsyncTask(imageDao).execute(image);

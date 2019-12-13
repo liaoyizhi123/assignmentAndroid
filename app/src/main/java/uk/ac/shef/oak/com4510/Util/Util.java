@@ -7,7 +7,10 @@ import android.view.Gravity;
 import android.widget.Toast;
 
 import java.lang.reflect.Array;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 public class Util {
@@ -35,23 +38,23 @@ public class Util {
 
     public static void main(String[] args) {
 
-        Double data[] = new Double[2];
-        data[0] = 1.0;
-        data[1] = 2.0;
+//        Double data[] = new Double[2];
+//        data[0] = 1.0;
+//        data[1] = 2.0;
+//
+//        Double data2[] = new Double[2];
+//        data2[0] = 3.0;
+//        data2[1] = 4.0;
+//
+//        List<Double[]> li = new ArrayList<>();
+//        li.add(data);
+//        li.add(data2);
+//        String s = arrayListToString(li);
+//
+//        String[] s1 = stringToArrayList(s);
+//        System.out.println(s1[0]);
 
-        Double data2[] = new Double[2];
-        data2[0] = 3.0;
-        data2[1] = 4.0;
-
-        List<Double[]> li = new ArrayList<>();
-        li.add(data);
-        li.add(data2);
-        String s = arrayListToString(li);
-
-        String[] s1 = stringToArrayList(s);
-        System.out.println(s1[0]);
-
-
+        TimeStampToString("1576184720965");
 
     }
 
@@ -62,6 +65,14 @@ public class Util {
         Toast toast = Toast.makeText(context, str, Toast.LENGTH_LONG);
         toast.setGravity(Gravity.TOP, 0, height / 4);
         toast.show();
+    }
+
+    public static String TimeStampToString(String timeStamp){
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(Long.parseLong(timeStamp));
+        String format = simpleDateFormat.format(calendar.getTimeInMillis());
+        return format;
     }
 
 }
