@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="uk.ac.shef.oak.com4510">
+
     <!--
          The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
          Google Maps Android API v2, but you must specify either coarse or fine
@@ -17,6 +18,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -27,44 +29,38 @@
         -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyAQ4ZDGyQlHdzmY28GwFEG_JxtPFQ59sAU" />
+            android:value="@string/google_maps_key" />
 
-
+        <activity android:name=".view.MapsActivityTest"></activity>
         <activity
             android:name=".view.MapsActivity"
             android:label="@string/title_activity_maps">
 
-<!--        <activity-->
-<!--            android:name=".MapsActivity"-->
-<!--            android:label="@string/title_activity_maps">-->
-
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
-
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
-
-    </activity>
-
-<!--    </activity>-->
+            <!-- <activity -->
+            <!-- android:name=".MapsActivity" -->
+            <!-- android:label="@string/title_activity_maps"> -->
 
 
-        <activity
-            android:name=".view.MyView"
-            android:label="@string/title_activity_maps">
+            <!-- <intent-filter> -->
+            <!-- <action android:name="android.intent.action.MAIN" /> -->
+
+
+            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+            <!-- </intent-filter> -->
+
+        </activity> <!-- </activity> -->
+        <activity android:name=".view.MyView">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".view.ImageDetails"></activity>
+        <activity android:name=".view.ImageDetails" />
         <activity android:name=".view.FullScreenActivity" />
         <activity android:name=".view.GridAfterPath" />
         <activity android:name=".view.PathBrowsing" />
         <activity android:name=".view.DateAscending" />
-
-
     </application>
 
 </manifest>
