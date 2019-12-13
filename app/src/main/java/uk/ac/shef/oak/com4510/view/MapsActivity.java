@@ -239,7 +239,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         //accelerometer.startAccelerometerRecording();
         mLocationRequest = new LocationRequest();
         //This should be 20000 but it was quite slow  so I change to 6000
-        mLocationRequest.setInterval(6000);
+        mLocationRequest.setInterval(20000);
         mLocationRequest.setFastestInterval(5000);
         mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
