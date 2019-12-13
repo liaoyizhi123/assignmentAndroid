@@ -333,7 +333,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
 
     private void addmarker(LatLng latLng) {
-        String temptitle = "Sheffield";
+        String temptitle = title;
         mMap.addMarker(new MarkerOptions().position(latLng).title(temptitle).snippet("Population: 4,137,400").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
     }
 

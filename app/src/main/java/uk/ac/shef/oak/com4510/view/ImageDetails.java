@@ -40,6 +40,8 @@ import uk.ac.shef.oak.com4510.entities.Image;
 import uk.ac.shef.oak.com4510.entities.Path;
 import uk.ac.shef.oak.com4510.viewModel.ImageDetailsViewModel;
 
+import static uk.ac.shef.oak.com4510.Util.Util.stringToLinkList;
+
 public class ImageDetails extends AppCompatActivity implements OnMapReadyCallback {
     ImageView imageView1;
     TextView ImageDetailTitle;
@@ -54,35 +56,19 @@ public class ImageDetails extends AppCompatActivity implements OnMapReadyCallbac
     private TextView pressure;
     private List<LatLng> latLngs = new LinkedList<>();
     private List<LatLng> latLngMap = new LinkedList<>();
+    private int pathId;
+    private String titleStr = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         ImageView imageView;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_image_details);
+
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
 
-        LatLng latLng = new LatLng(53.1674983, -1.5232383);
-        LatLng latLng0 = new LatLng(53.163733, -1.4920889);
-        LatLng latLng1 = new LatLng(53.167784, -1.4826486);
-        LatLng latLng2 = new LatLng(53.1607811, -1.4811495);
-        LatLng latLng3 = new LatLng(53.1603687, -1.4808168);
-        LatLng latLng4 = new LatLng(53.1603124, -1.4807714);
-        latLngs.add(latLng);
-        latLngs.add(latLng0);
-        latLngs.add(latLng1);
-        latLngs.add(latLng2);
-        latLngs.add(latLng3);
-        latLngs.add(latLng4);
-        latLngMap.add(latLng);
-        latLngMap.add(latLng0);
-        latLngMap.add(latLng1);
-        latLngMap.add(latLng2);
-        latLngMap.add(latLng3);
-        latLngMap.add(latLng4);
-        //addMapLine(latLngMap);
 
 
         ImageDetailTitle = (TextView) findViewById(R.id.ImageDetailTitle);
@@ -93,10 +79,10 @@ public class ImageDetails extends AppCompatActivity implements OnMapReadyCallbac
 //        imageView1.setAdapter(new DateAscendingAdapter(this));
 
         //Load details
-        int id = getIntent().getIntExtra("id", 0);
+        final int id = getIntent().getIntExtra("id", 0);
 
 
-        int pathId =getIntent().getIntExtra("pathId",0);
+        pathId =getIntent().getIntExtra("pathId",0);
         //GridAfterPathAdapter gridAfterPathAdapter =new GridAfterPathAdapter(this);
 
         //imageView1.setImageResource(gridAfterPathAdapter.imageArray[position]);
@@ -104,11 +90,21 @@ public class ImageDetails extends AppCompatActivity implements OnMapReadyCallbac
         imageDetailsViewModel = ViewModelProviders.of(this).get(ImageDetailsViewModel.class);
         imageDetailsViewModel.getImage(id).observe(this, new Observer<Image>() {
             @Override
-            public void onChanged(Image image) {
+            public void onChanged(final Image image) {
                 Bitmap bitmap = BitmapFactory.decodeFile(image.getUrl());
                 imageView1.setImageBitmap(bitmap);
                 temp.setText("Temp: " + image.getTemp() + "C");
                 pressure.setText("Pressure: " + image.getPressure() + "mbars");
+
+                imageView1.setOnClickListener(new AdapterView.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent intent =new Intent(getApplicationContext(),FullScreenActivity.class);
+                        intent.putExtra("url", image.getUrl());
+                        //intent.putExtra("title", titleStr);
+                        startActivity(intent);
+                    }
+                });
 
             }
         });
@@ -119,51 +115,58 @@ public class ImageDetails extends AppCompatActivity implements OnMapReadyCallbac
             public void onChanged(Path path) {
 
                 title.setText("Title: " + path.getTitle());
+                titleStr = path.getTitle();
+                //System.out.println("location"+path.getLocation());
+                latLngMap = stringToLinkList(path.getLocation());
+                addMapLine(latLngMap);
 
 
             }
         });
 
+        imageDetailsViewModel.getAllImageLiveByPathId(pathId).observe(this, new Observer<List<Image>>() {
+            @Override
+            public void onChanged(List<Image> images) {
+                int index=0;
+                for(Image i :images){
+                    latLngs.add(new LatLng(Double.parseDouble(i.getLatitude()),Double.parseDouble(i.getLongitude())));
+                    if(i.getId() == id){
+                        index = images.indexOf(i);
+                    }
+                }
+                addallMarkers(latLngs,index);
+            }
+        });
+
 
         //CLICK FOR FullScreenActivity
-//        imageView1.setOnClickListener(new AdapterView.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent intent =new Intent(getApplicationContext(),FullScreenActivity.class);
-//
-//                int position =getIntent().getExtras().getInt("id");
-//
-//           intent.putExtra("id", position);
-//
-//                startActivity(intent);
-//            }
-//
-//
-//        });
 
-//        addallMarkers(latLngs);
-//        addMapLine(latLngMap);
+
+
     }
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
+
         mMap = googleMap;
-        addMapLine(latLngMap);
-        addallMarkers(latLngs);
+
+
+        //addallMarkers(latLngs,0);
     }
 
-    public void addallMarkers(List<LatLng> latLngs) {
+    public void addallMarkers(List<LatLng> latLngs,int index) {
         for (LatLng latLng : latLngs) {
-            mMap.addMarker(new MarkerOptions().position(latLng).title("hello").snippet("10000").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
+            mMap.addMarker(new MarkerOptions().position(latLng).title(titleStr).snippet("10000").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
         }
-        mMap.addMarker(new MarkerOptions().position(latLngs.get(latLngs.size() - 1)).title("hello").snippet("10000").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)));
+        mMap.addMarker(new MarkerOptions().position(latLngs.get(index)).title(titleStr).snippet("10000").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)));
 
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLngs.get(latLngs.size() - 1), 14.0f));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLngs.get(index), 14.0f));
     }
 
     private Polyline polyline;
 
     public void addMapLine(List<LatLng> latLngsMap) {
+        System.out.println("latlngsize="+latLngsMap.size());
         polyline = mMap.addPolyline(new PolylineOptions().addAll(latLngsMap).width(10).color(Color.BLUE));
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLngsMap.get(latLngsMap.size() - 1), 14.0f));
 

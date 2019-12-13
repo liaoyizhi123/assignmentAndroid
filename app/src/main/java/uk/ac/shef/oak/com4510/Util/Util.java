@@ -6,11 +6,14 @@ import android.view.Display;
 import android.view.Gravity;
 import android.widget.Toast;
 
+import com.google.android.gms.maps.model.LatLng;
+
 import java.lang.reflect.Array;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
 
 public class Util {
@@ -29,32 +32,20 @@ public class Util {
         return str.toString();
     }
 
-    public static String[] stringToArrayList(String str){
+    public static List<LatLng> stringToLinkList(String str){
+        List<LatLng> li = new LinkedList<>();
         String[] split = str.split(";");
-        System.out.println(split);
-        return split;
+        for (String s : split){
+            String[] split1 = s.split(",");
+            LatLng latLng = new LatLng(Double.parseDouble(split1[0]), Double.parseDouble(split1[1]));
+            li.add(latLng);
+        }
+        return li;
     }
 
 
     public static void main(String[] args) {
 
-//        Double data[] = new Double[2];
-//        data[0] = 1.0;
-//        data[1] = 2.0;
-//
-//        Double data2[] = new Double[2];
-//        data2[0] = 3.0;
-//        data2[1] = 4.0;
-//
-//        List<Double[]> li = new ArrayList<>();
-//        li.add(data);
-//        li.add(data2);
-//        String s = arrayListToString(li);
-//
-//        String[] s1 = stringToArrayList(s);
-//        System.out.println(s1[0]);
-
-        TimeStampToString("1576184720965");
 
     }
 

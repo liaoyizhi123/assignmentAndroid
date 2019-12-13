@@ -15,11 +15,11 @@ import uk.ac.shef.oak.com4510.repository.MyRepository;
 
 public class ImageDetailsViewModel extends AndroidViewModel {
     private final MyRepository myRepository;
+    LiveData<List<Image>> allImage;
 
     public ImageDetailsViewModel(@NonNull Application application) {
         super(application);
         myRepository = new MyRepository(application);
-
     }
 
     public LiveData<Image> getImage(int imageId){
@@ -30,12 +30,11 @@ public class ImageDetailsViewModel extends AndroidViewModel {
         return myRepository.getPath(pathId);
     }
 
-//    public LiveData<List<Image>> getAllImagesLive(){
-//        if(imagesToDisplay == null){
-//            imagesToDisplay = new MutableLiveData<List<Image>>();
-//        }
-//        return imagesToDisplay;
-//    }
+    public LiveData<List<Image>> getAllImageLiveByPathId(int pathId){
+        return myRepository.getAllImageLiveByPathId(pathId);
+    }
+
+
 
 
 }

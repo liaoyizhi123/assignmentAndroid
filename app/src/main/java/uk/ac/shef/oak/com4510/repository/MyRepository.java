@@ -27,7 +27,9 @@ public class MyRepository extends ViewModel {
         pathDao = db.pathDao();
     }
 
-
+    public LiveData<List<Image>> getAllImageLiveByPathId(int pathId){
+        return imageDao.findByPathId(pathId);
+    }
 
     public List<Image> getAllImage() {
         List<Image> images = null;

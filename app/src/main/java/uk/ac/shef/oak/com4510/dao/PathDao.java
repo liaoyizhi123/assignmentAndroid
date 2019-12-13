@@ -22,13 +22,13 @@ public interface PathDao {
     @Delete
     void deleteImage(Path path);
 
-    @Query("select * from path")
+    @Query("select * from path where stopTimestamp is not NULL")
     List<Path> findAll();
 
     @Query("select * from path where id= :id")
     LiveData<Path> findById(int id);
 
-    @Query("select * from path")
+    @Query("select * from path where stopTimestamp is not NULL")
     LiveData<List<Path>> getAllPaths();
 
     @Query("update Path set location = :location, stopTimestamp=:stopTime where id=:id")
