@@ -11,16 +11,22 @@ import android.util.Log;
 
 public class JobHandlerService extends JobService {
     private JobScheduler jobScheduler;
+    private MapsActivity mapsActivity;
 
     @Override
     public boolean onStartJob(JobParameters params) {
         Log.e("service", "GuardJobService--onStartJob");
+        mapsActivity = new MapsActivity();
+        mapsActivity.startmap();
+
         return false;
     }
 
     @Override
     public boolean onStopJob(JobParameters params) {
         Log.e("service", "GuardJobService--onStopJob");
+        mapsActivity = new MapsActivity();
+        mapsActivity.stopmap();
         return false;
     }
 

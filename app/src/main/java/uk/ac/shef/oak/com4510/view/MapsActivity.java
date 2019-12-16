@@ -95,9 +95,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mapsViewModel = ViewModelProviders.of(this).get(MapsViewModel.class);
         Intent intent = getIntent();
         title = intent.getStringExtra("title");
-       // Intent ret = new Intent(MapsActivity.this, JobHandlerService.class);
+        // Intent ret = new Intent(MapsActivity.this, JobHandlerService.class);
         //startService(ret);
-        pathId = intent.getIntExtra("pathId",0);
+        pathId = intent.getIntExtra("pathId", 0);
 
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
@@ -139,7 +139,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
                 //update Path
                 Path path = new Path(null, null, stringBuilder.toString(), null, String.valueOf(System.currentTimeMillis()));
-                mapsViewModel.updatePath(pathId,path);
+                mapsViewModel.updatePath(pathId, path);
 
                 pressureSensor.stopTempSensor();
                 tempSensor.stopTempSensor();
@@ -363,10 +363,17 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     protected void onDestroy() {
         super.onDestroy();
         Path path = new Path(null, null, stringBuilder.toString(), null, String.valueOf(System.currentTimeMillis()));
-        mapsViewModel.updatePath(pathId,path);
+        mapsViewModel.updatePath(pathId, path);
 
         pressureSensor.stopTempSensor();
         tempSensor.stopTempSensor();
+    }
+
+    public void startmap() {
+        startLocationUpdates();
+    }
+    public void stopmap() {
+        stopLocationUpdates();
     }
 }
 
