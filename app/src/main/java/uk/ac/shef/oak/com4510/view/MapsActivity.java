@@ -95,7 +95,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mapsViewModel = ViewModelProviders.of(this).get(MapsViewModel.class);
         Intent intent = getIntent();
         title = intent.getStringExtra("title");
-
+       // Intent ret = new Intent(MapsActivity.this, JobHandlerService.class);
+        //startService(ret);
         pathId = intent.getIntExtra("pathId",0);
 
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
