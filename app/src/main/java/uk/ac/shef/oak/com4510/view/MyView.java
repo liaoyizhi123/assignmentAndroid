@@ -24,14 +24,13 @@ import uk.ac.shef.oak.com4510.viewModel.MyViewModel;
 
 public class MyView extends AppCompatActivity {
 
-    //multiple
-    LiveData<List<Image>> imagesToDisplay;
-
-    //one
-    private MyViewModel myViewModel;
-
     private List<Image> liImages;
     private EditText et;
+
+    //multiple
+    LiveData<List<Image>> imagesToDisplay;
+    //one
+    private MyViewModel myViewModel;
 
 
     @Override
