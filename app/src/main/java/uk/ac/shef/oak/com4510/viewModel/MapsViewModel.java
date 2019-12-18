@@ -20,11 +20,13 @@ public class MapsViewModel extends AndroidViewModel {
 
     }
 
+    //update the path when the user exit the map UI
     public void updatePath(int id,Path path){
         path.setId(id);
         myRepository.updatePath(path);
     }
 
+    //add one image
     public void addImage(Image image){
 
         myRepository.insertOneImage(image);

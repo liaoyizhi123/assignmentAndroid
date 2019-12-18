@@ -28,7 +28,7 @@ public class DataAscendingViewModel extends AndroidViewModel {
     public List<Image> getAllImages(){
         return myRepository.getAllImage();
     }
-
+    //get livedata of all images
     public LiveData<List<Image>> getAllImagesLive(){
         if(imagesToDisplay == null){
             imagesToDisplay = new MutableLiveData<List<Image>>();

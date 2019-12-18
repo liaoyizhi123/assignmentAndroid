@@ -22,14 +22,17 @@ public class ImageDetailsViewModel extends AndroidViewModel {
         myRepository = new MyRepository(application);
     }
 
+    //get image by id
     public LiveData<Image> getImage(int imageId){
         return myRepository.getImage(imageId);
     }
 
+    //get path by id
     public LiveData<Path> getPath(Integer pathId){
         return myRepository.getPath(pathId);
     }
 
+    //get all the image by Path id
     public LiveData<List<Image>> getAllImageLiveByPathId(int pathId){
         return myRepository.getAllImageLiveByPathId(pathId);
     }

@@ -26,7 +26,9 @@ public class DateAscending extends AppCompatActivity {
 
     //multiple
     LiveData<List<Image>> imagesToDisplay;
+    //viewmodel to get livedata
     private DataAscendingViewModel dataAscendingViewModel;
+
     private  Context applicationContext;
 
     @Override
@@ -38,7 +40,10 @@ public class DateAscending extends AppCompatActivity {
         gridView=(GridView) findViewById(R.id.GridView1);
 
         dataAscendingViewModel = ViewModelProviders.of(this).get(DataAscendingViewModel.class);
+        //add observation on the data
         dataAscendingViewModel.getAllImagesLive().observe(this, new Observer<List<Image>>() {
+
+            //method invoked automatically on data change
             @Override
             public void onChanged(@Nullable final List<Image> images) {
                 gridView.setAdapter(new DateAscendingAdapter(applicationContext,images));
@@ -57,29 +62,7 @@ public class DateAscending extends AppCompatActivity {
             }
         });
 
-        //List<Image> data = dataAscendingViewModel.getAllImages();
-        //gridView.setAdapter(new DateAscendingAdapter(this,data));
 
-
-        //click for FullScreenActivity
-//        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                Intent intent =new Intent(getApplicationContext(),ImageDetails.class);
-//                intent.putExtra("id", position);
-//                System.out.println("position"+position);
-//                startActivity(intent);
-//            }
-//        });
-        //click for ImageDETAILS
-//        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                Intent intent =new Intent(getApplicationContext(),ImageDetails.class);
-//                intent.putExtra("id", position);
-//                startActivity(intent);
-//            }
-//        });
     }
 
 

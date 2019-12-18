@@ -24,6 +24,7 @@ public class PathBrowsingViewModel extends AndroidViewModel {
         pathsToDisplay = myRepository.getAllPathsLive();
     }
 
+    //get livedata of all the images
     public LiveData<List<Path>> getAllImagesLive(){
         if(pathsToDisplay == null){
             pathsToDisplay = new MutableLiveData<List<Path>>();

@@ -88,6 +88,7 @@ public class ImageDetails extends AppCompatActivity implements OnMapReadyCallbac
         //imageView1.setImageResource(gridAfterPathAdapter.imageArray[position]);
 
         imageDetailsViewModel = ViewModelProviders.of(this).get(ImageDetailsViewModel.class);
+        //add observation to the viewModel
         imageDetailsViewModel.getImage(id).observe(this, new Observer<Image>() {
             @Override
             public void onChanged(final Image image) {
@@ -109,7 +110,7 @@ public class ImageDetails extends AppCompatActivity implements OnMapReadyCallbac
             }
         });
 
-
+        //add observation to the viewModel
         imageDetailsViewModel.getPath(pathId).observe(this, new Observer<Path>() {
             @Override
             public void onChanged(Path path) {
@@ -124,6 +125,7 @@ public class ImageDetails extends AppCompatActivity implements OnMapReadyCallbac
             }
         });
 
+        //add observation to the viewModel
         imageDetailsViewModel.getAllImageLiveByPathId(pathId).observe(this, new Observer<List<Image>>() {
             @Override
             public void onChanged(List<Image> images) {

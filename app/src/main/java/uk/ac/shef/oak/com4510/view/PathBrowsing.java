@@ -1,11 +1,7 @@
 package uk.ac.shef.oak.com4510.view;
 
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-
-import java.util.ArrayList;
 import java.util.List;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -36,7 +32,9 @@ public class PathBrowsing extends AppCompatActivity {
         recycleView.setHasFixedSize(true);
         recycleView.setLayoutManager(new LinearLayoutManager(this));
 
+        //initialize the viewModel from ViewModelProviders
         pathBrowsingViewModel = ViewModelProviders.of(this).get(PathBrowsingViewModel.class);
+        //add observation to the livedata
         pathBrowsingViewModel.getAllImagesLive().observe(this, new Observer<List<Path>>() {
             @Override
             public void onChanged(List<Path> paths) {

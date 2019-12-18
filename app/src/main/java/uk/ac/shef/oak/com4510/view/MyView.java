@@ -24,6 +24,7 @@ import uk.ac.shef.oak.com4510.viewModel.MyViewModel;
 
 public class MyView extends AppCompatActivity {
 
+    //a list of the Image
     private List<Image> liImages;
     private EditText et;
 
@@ -41,39 +42,10 @@ public class MyView extends AppCompatActivity {
 
         et = (EditText) findViewById(R.id.et);
 
-        //initialize
+        //initialize the viewModel from ViewModelProviders
         myViewModel = ViewModelProviders.of(this).get(MyViewModel.class);
 
-//
-//
-//        Button button = findViewById(R.id.button);
-//        button.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                myViewModel.addImage(null);
-//            }
-//        });
-//
-//        Button btn_getImage = findViewById(R.id.btn_getImage);
-//        button.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                myViewModel.addImage(null);
-//            }
-//        });
-//
-//        //initialise EasyImage
-//        initEasyImage();
-//        //camera
-//        Button cameraBtn = (Button) findViewById(R.id.camera);
-//        cameraBtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                initEasyImage()
-//                EasyImage.openCamera(MyView.this, 0);
-//            }
-//        });
-//
+
 
     }
 
@@ -84,16 +56,12 @@ public class MyView extends AppCompatActivity {
     public void dateAscending(View view){
         Intent intent = new Intent();
         intent.setClass(MyView.this,DateAscending.class);
-//        String account =getIntent().getStringExtra("username");
-////        intent.putExtra("username",account);
         startActivity(intent);
     }
 
     public void pathBrowsing(View view){
         Intent intent = new Intent();
         intent.setClass(MyView.this,PathBrowsing.class);
-//        String account =getIntent().getStringExtra("username");
-////        intent.putExtra("username",account);
         startActivity(intent);
     }
 
@@ -102,8 +70,6 @@ public class MyView extends AppCompatActivity {
     public void clickToStart(View view){
         Intent intent = new Intent();
         intent.setClass(MyView.this, MapsActivity.class);
-//        String account =getIntent().getStringExtra("username");
-////        intent.putExtra("username",account);
 
         String title = et.getText().toString().trim();
 
@@ -118,13 +84,9 @@ public class MyView extends AppCompatActivity {
             String startTimeString = String.valueOf(starttime);
             int addId = myViewModel.addPath(new Path(title, null, null, startTimeString, null));
 
-
-            //List<Path> allPath = myViewModel.getAllPath();
-
-
-            //Util.makeNote(MyView.this, this.getApplicationContext(),String.valueOf(allPath.get(0).getStartTimestamp()));
-
+            //put pathId
             intent.putExtra("pathId",addId);
+            //put title
             intent.putExtra("title",title);
 
             startActivity(intent);

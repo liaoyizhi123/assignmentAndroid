@@ -16,6 +16,7 @@ import uk.ac.shef.oak.com4510.dao.PathDao;
 import uk.ac.shef.oak.com4510.entities.Image;
 import uk.ac.shef.oak.com4510.entities.Path;
 
+//repository to get connection with DB
 public class MyRepository extends ViewModel {
 
     private final ImageDao imageDao;
@@ -144,7 +145,7 @@ public class MyRepository extends ViewModel {
         }
     }
 
-
+    //async task to insert Path
     private class insertAsyncTask2 extends AsyncTask<Path,Void,Integer> {
         private final PathDao pathDao;
         public insertAsyncTask2(PathDao pathDao) {
@@ -159,6 +160,7 @@ public class MyRepository extends ViewModel {
         }
     }
 
+    //async task to get all the path
     private class getAllPathAsyncTask extends AsyncTask<Void,Void,List<Path>>{
         private final PathDao pathDao;
         public getAllPathAsyncTask(PathDao pathDao) {
@@ -171,6 +173,7 @@ public class MyRepository extends ViewModel {
         }
     }
 
+    //async task to get all the images
     private class getImageAsyncTask extends AsyncTask<Void,Void,List<Image>>{
         private final ImageDao imageDao;
         public getImageAsyncTask(ImageDao imageDao) {

@@ -20,10 +20,14 @@ import uk.ac.shef.oak.com4510.entities.Image;
 import uk.ac.shef.oak.com4510.viewModel.GridAfterPathViewModel;
 
 public class GridAfterPath extends AppCompatActivity {
+
     GridView gridView;
     TextView textView;
+    //livedata of all the images
     LiveData<List<Image>> imagesToDisplay;
+    //the viewModel
     private GridAfterPathViewModel gridAfterPathViewModel;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,8 +37,10 @@ public class GridAfterPath extends AppCompatActivity {
 
         //Get Title
         final String Title =getIntent().getExtras().getString("Title");
+        //Get pathId of the images
         int pathId =getIntent().getExtras().getInt("pathId");
 
+        //add observation to the viewModel
         gridAfterPathViewModel = ViewModelProviders.of(this).get(GridAfterPathViewModel.class);
         gridAfterPathViewModel.getImageLiveByPathId(pathId).observe(this, new Observer<List<Image>>() {
             @Override
@@ -67,14 +73,5 @@ public class GridAfterPath extends AppCompatActivity {
 
         textView.setText(Title);
 
-        //click for ImageDETAILS
-//        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                Intent intent =new Intent(getApplicationContext(),ImageDetails.class);
-//                intent.putExtra("id", position);
-//                startActivity(intent);
-//            }
-//        });
     }
 }

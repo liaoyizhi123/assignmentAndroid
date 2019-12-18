@@ -24,7 +24,7 @@ public class GridAfterPathViewModel extends AndroidViewModel {
         myRepository = new MyRepository(application);
 
     }
-
+    //get live data of image by pathId
     public LiveData<List<Image>> getImageLiveByPathId(int pathId){
         return myRepository.getImageLiveByPathId(pathId);
     }

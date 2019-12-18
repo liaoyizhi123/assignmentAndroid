@@ -11,6 +11,8 @@ import uk.ac.shef.oak.com4510.R;
 import uk.ac.shef.oak.com4510.adapter.GridAfterPathAdapter;
 
 public class FullScreenActivity extends AppCompatActivity {
+
+    //view instance to get view from *.xml
     ImageView imageView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,10 +24,9 @@ public class FullScreenActivity extends AppCompatActivity {
         getSupportActionBar().setTitle("Full Image");
 
         Intent i =getIntent();
+
+        //get the location of images and pass to BitmapFactory.
         String url =i.getExtras().getString("url");
-        //String title = i.getExtras().getString("title");
-//        GridAfterPathAdapter gridAfterPathAdapter =new GridAfterPathAdapter(this);
-//        imageView.setImageResource(gridAfterPathAdapter.imageArray[position]);
         Bitmap bitmap = BitmapFactory.decodeFile(url);
         imageView.setImageBitmap(bitmap);
     }

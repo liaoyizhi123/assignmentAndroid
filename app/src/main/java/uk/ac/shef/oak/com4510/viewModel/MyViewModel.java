@@ -25,7 +25,7 @@ public class MyViewModel extends AndroidViewModel {
     public MyViewModel(@NonNull Application application) {
         super(application);
         //initialize the data to the corresponding view
-        //初始化一个页面所需要的所有数据
+        //get all the data to feed the UI
         myRepository = new MyRepository(application);
         imagesToDisplay = myRepository.getAllImageLive();
 
@@ -40,11 +40,12 @@ public class MyViewModel extends AndroidViewModel {
     }
 
 
-
+    //add a Path with null location , location will be added when exit the Map UI
     public int addPath(Path path){
         return myRepository.addPath(path);
     }
 
+    //get all Path
     public List<Path> getAllPath(){
         return myRepository.getAllPath();
     }

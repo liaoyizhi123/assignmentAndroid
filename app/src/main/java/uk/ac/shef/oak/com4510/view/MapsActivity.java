@@ -104,12 +104,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mapFragment.getMapAsync(this);
         pressureSensor = new PressureSensor(this);
         tempSensor = new TempSensor(this);
-        // startLocationUpdates();
 
-//        sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
-//        sensor = sensorManager.getDefaultSensor(Sensor.TYPE_AMBIENT_TEMPERATURE);
-//        barometer = new Barometer(this);
-//        accelerometer = new Accelerometer(this, barometer);
         mButtonStart = (Button) findViewById(R.id.button_start);
 
         mButtonStart.setOnClickListener(new View.OnClickListener() {
@@ -118,26 +113,20 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 startLocationUpdates();
 
 
-//                if (mButtonEnd != null)
-//                    mButtonEnd.setEnabled(true);
-//                mButtonStart.setEnabled(false);
                 pressureSensor.startTempSensor();
                 tempSensor.startTempSensor();
 
 
             }
         });
-//        mButtonStart.setEnabled(true);
+
+
         mButtonEnd = (Button) findViewById(R.id.button_end);
         mButtonEnd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 stopLocationUpdates();
-//                if (mButtonStart != null)
-//                    mButtonStart.setEnabled(true);
-//                mButtonEnd.setEnabled(false);
 
-                //update Path
                 Path path = new Path(null, null, stringBuilder.toString(), null, String.valueOf(System.currentTimeMillis()));
                 mapsViewModel.updatePath(pathId, path);
 
@@ -148,7 +137,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
             }
         });
-//        mButtonEnd.setEnabled(false);
 
 
         //camera
@@ -316,8 +304,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     protected void onPause() {
         super.onPause();
-//        accelerometer.stopAccelerometer();
-//        sensorManager.unregisterListener(this);
     }
 
 //    @Override
