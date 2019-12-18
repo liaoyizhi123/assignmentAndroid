@@ -55,6 +55,7 @@ public class Util {
         toast.show();
     }
 
+    //change string to formatted Time string
     public static String TimeStampToString(String timeStamp){
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Calendar calendar = Calendar.getInstance();
