@@ -49,6 +49,7 @@ public class PathBrowsingAdapter extends RecyclerView.Adapter<PathBrowsingAdapte
     public void onBindViewHolder(@NonNull final ViewHolder holder, final int position) {
         holder.TextViewDate.setText(items[position].getStartTimestamp());
         holder.TextViewTitle.setText(items[position].getTitle());
+        //set item can be clicked
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

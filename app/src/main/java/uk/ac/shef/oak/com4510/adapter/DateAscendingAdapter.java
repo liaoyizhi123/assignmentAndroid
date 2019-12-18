@@ -32,8 +32,10 @@ public class DateAscendingAdapter extends BaseAdapter {
         return imagesList.get(position);
     }
 
+
     @Override
     public long getItemId(int position) {
+        //get id
         int id = imagesList.get(position).getId();
         return id;
     }

@@ -47,12 +47,12 @@ public class DateAscending extends AppCompatActivity {
             @Override
             public void onChanged(@Nullable final List<Image> images) {
                 gridView.setAdapter(new DateAscendingAdapter(applicationContext,images));
-
+                //set each one can be clicked
                 gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                         Intent intent =new Intent(getApplicationContext(),ImageDetails.class);
-
+                        //passing id
                         intent.putExtra("id", (int)id);
                         intent.putExtra("pathId",images.get(position).getPathId());
                         startActivity(intent);

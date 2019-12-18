@@ -76,16 +76,12 @@ public class ImageDetails extends AppCompatActivity implements OnMapReadyCallbac
         title = (TextView) findViewById(R.id.ImageDetailTitle);
         temp = (TextView) findViewById(R.id.ImageDetailTemp);
         pressure = (TextView) findViewById(R.id.ImageDetailPressure);
-//        imageView1.setAdapter(new DateAscendingAdapter(this));
 
         //Load details
         final int id = getIntent().getIntExtra("id", 0);
 
 
         pathId =getIntent().getIntExtra("pathId",0);
-        //GridAfterPathAdapter gridAfterPathAdapter =new GridAfterPathAdapter(this);
-
-        //imageView1.setImageResource(gridAfterPathAdapter.imageArray[position]);
 
         imageDetailsViewModel = ViewModelProviders.of(this).get(ImageDetailsViewModel.class);
         //add observation to the viewModel
@@ -94,15 +90,14 @@ public class ImageDetails extends AppCompatActivity implements OnMapReadyCallbac
             public void onChanged(final Image image) {
                 Bitmap bitmap = BitmapFactory.decodeFile(image.getUrl());
                 imageView1.setImageBitmap(bitmap);
-                temp.setText("Temp: " + image.getTemp() + "C");
-                pressure.setText("Pressure: " + image.getPressure() + "mbars");
-
+                temp.setText("Temp: " + image.getTemp() + " C");
+                pressure.setText("Pressure: " + image.getPressure() + " mbars");
+         //CLICK FOR FullScreenActivity
                 imageView1.setOnClickListener(new AdapterView.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         Intent intent =new Intent(getApplicationContext(),FullScreenActivity.class);
                         intent.putExtra("url", image.getUrl());
-                        //intent.putExtra("title", titleStr);
                         startActivity(intent);
                     }
                 });
@@ -117,7 +112,6 @@ public class ImageDetails extends AppCompatActivity implements OnMapReadyCallbac
 
                 title.setText("Title: " + path.getTitle());
                 titleStr = path.getTitle();
-                //System.out.println("location"+path.getLocation());
                 latLngMap = stringToLinkList(path.getLocation());
                 addMapLine(latLngMap);
 
@@ -141,7 +135,7 @@ public class ImageDetails extends AppCompatActivity implements OnMapReadyCallbac
         });
 
 
-        //CLICK FOR FullScreenActivity
+
 
 
 
@@ -152,8 +146,6 @@ public class ImageDetails extends AppCompatActivity implements OnMapReadyCallbac
 
         mMap = googleMap;
 
-
-        //addallMarkers(latLngs,0);
     }
 
     public void addallMarkers(List<LatLng> latLngs,int index) {

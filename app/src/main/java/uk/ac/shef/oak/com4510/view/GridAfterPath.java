@@ -58,7 +58,7 @@ public class GridAfterPath extends AppCompatActivity {
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                         Intent intent =new Intent(getApplicationContext(),ImageDetails.class);
-
+                        //passing id
                         intent.putExtra("id", myDataset[position].getId());
                         intent.putExtra("pathId", myDataset[position].getPathId());
                         startActivity(intent);
