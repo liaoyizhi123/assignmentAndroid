@@ -44,10 +44,7 @@ public class Util {
     }
 
 
-    public static void main(String[] args) {
 
-
-    }
 
     public static void makeNote(Activity activity, Context context, String str){
         Display display = activity.getWindowManager().getDefaultDisplay();
